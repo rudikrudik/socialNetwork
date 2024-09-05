@@ -25,7 +25,7 @@
 ```
 pip install -r requirements
 ```
-- Перейдите в каталог app с исходным кодом и запустите сервер uvicorn:
+- Перейдите в каталог app и запустите сервер uvicorn:
 ```
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
