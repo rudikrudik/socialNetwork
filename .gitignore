@@ -1,3 +1,3 @@
 ./venv
 ./socialNetwork
-./backend/app/.env
+/backend/app/.env
