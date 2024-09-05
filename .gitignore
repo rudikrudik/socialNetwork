@@ -1,0 +1,13 @@
+./venv
+./socialNetwork
+backend/env
+backend/.env
+/.idea/.gitignore
+/.gitignore
+/.idea/dataSources.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/socialNetwork.iml
+/.idea/sqldialects.xml
+/.idea/vcs.xml
