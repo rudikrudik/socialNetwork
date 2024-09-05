@@ -23,7 +23,7 @@
 
 - Для начала работы установите зависимости:
 ```
-pip -m install requirements
+pip install -r requirements
 ```
 - Перейдите в каталог app с исходным кодом и запустите сервер uvicorn:
 ```
