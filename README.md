@@ -28,7 +28,6 @@ pip -m install requirements
 - Перейдите в каталог app с исходным кодом и запустите сервер uvicorn:
 ```
 uvicorn main:app --host 0.0.0.0 --port 8000
-
 ```
 
 Приложение будет доступно по адресу http://ip_address:8000
