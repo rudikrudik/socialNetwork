@@ -1,4 +1,4 @@
 ./venv
 ./socialNetwork
 /backend/.env
-/backend/test
+test
