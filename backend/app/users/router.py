@@ -79,6 +79,6 @@ def logout_user(response: Response):
     return {"Message": "User logout"}
 
 
-@router.get("/all_users")
+@router.get("/user/all")
 def get_all_users(token: str = Depends(dep.get_token)):
     return db_user.get_all_users()
