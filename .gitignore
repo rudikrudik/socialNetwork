@@ -11,3 +11,4 @@ backend/.env
 /.idea/socialNetwork.iml
 /.idea/sqldialects.xml
 /.idea/vcs.xml
+.env

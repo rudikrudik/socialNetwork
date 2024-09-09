@@ -1,6 +1,9 @@
 --Create database api
 CREATE DATABASE api;
 
+--Use db api
+\c api
+
 --Create tables users
 CREATE TABLE IF NOT EXISTS public.users
 (
@@ -13,9 +16,13 @@ CREATE TABLE IF NOT EXISTS public.users
     city VARCHAR(30),
     password VARCHAR(80),
     login VARCHAR(20),
-    is_admin boolean DEFAULT false,
-)
+    is_admin boolean DEFAULT false
+);
 
 --Add first test record
-INSERT INTO users(first_name, last_name, birthday, gender, hobby, city, login)
-    VALUES('first','user', '1991.01.01', 'male', 'testing', 'test');
+INSERT INTO users(id, first_name, last_name, gender)
+ SELECT 1, 'first', 'user', 'male'
+WHERE NOT EXISTS(
+ SELECT NULL FROM users
+  WHERE (first_name, last_name, gender) = ('first', 'user', 'male')
+);
