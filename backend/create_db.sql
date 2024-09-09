@@ -20,9 +20,11 @@ CREATE TABLE IF NOT EXISTS public.users
 );
 
 --Add first test record
-INSERT INTO users(id, first_name, last_name, gender)
- SELECT 1, 'first', 'user', 'male'
+INSERT INTO users(id, first_name, last_name, birthday, gender, hobby, city)
+    SELECT 1, 'first', 'user', '1990-01-01', 'male', 'testing', 'testcity'
 WHERE NOT EXISTS(
- SELECT NULL FROM users
-  WHERE (first_name, last_name, gender) = ('first', 'user', 'male')
+    SELECT NULL FROM users
+        WHERE (first_name, last_name, birthday, gender, hobby, city) =
+        ('first', 'user', '1990-01-01', 'male', 'testing', 'testcity')
 );
+
