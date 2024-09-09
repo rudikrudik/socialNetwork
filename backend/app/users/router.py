@@ -82,3 +82,8 @@ def logout_user(response: Response):
 @router.get("/user/all")
 def get_all_users(token: str = Depends(dep.get_token)):
     return db_user.get_all_users()
+
+
+@router.get("/check")
+def health_check():
+    return {"Message": "ok"}

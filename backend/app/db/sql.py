@@ -1,6 +1,8 @@
 import psycopg2
 from app.config import settings
 
+
+# TODO Сделать обработку исключений на случай ошибки подключения к базе
 class Database:
     def __init__(self, name, user, password, host, port):
         try:
