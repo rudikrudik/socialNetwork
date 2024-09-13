@@ -9,7 +9,7 @@ router = APIRouter()
 
 
 @router.get(
-    "/user/get/{id}",
+    "/user/get/",
     description="Получение анкеты пользователя",
     response_model=User,
     responses={
@@ -48,29 +48,28 @@ def get_user(id: int) -> User:
         }
     },
 )
-def register_user(item: CreateUser):
-    if db_user.find_user_by_login(item.login) is not None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+def register_user(first_name: str, last_name: str, login: str, password: str):
+    if db_user.find_user_by_login(login) is not None:
+        raise HTTPException(status_code=status.HTTP_200_OK,
                             detail="User already exists")
-    db_user.create_user(item.first_name, item.last_name, item.birthday,
-                        item.gender, item.hobby, item.city, item.login, item.password)
-    return {"Message": "User successfully registered"}
+    result = db_user.create_user(first_name, last_name, login, password)
+    return {"user id": f"{result[0]}"}
 
 
 @router.post("/login")
-def login_user(response: Response, user_data: AuthUser):
-    result = db_user.auth_user(user_data.login)
+def login_user(response: Response, login: str, password: str):
+    result = db_user.auth_user(login)
     if result is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="Wrong username or password")
 
-    if not auth.verify_password(user_data.password, result[2]):
+    if not auth.verify_password(password, result[2]):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="Wrong your username or password")
 
     access_token = auth.create_access_token({"sub": str(result[0])})
     response.set_cookie(key="user_access_token", value=access_token, httponly=True)
-    return {"access_token": access_token, "refresh_token": None}
+    return {"token": access_token}
 
 
 @router.post("/logout")
