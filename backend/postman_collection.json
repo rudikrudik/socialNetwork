@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "34a437ed-e4d4-47fd-9dbd-745ae7380936",
+		"name": "otus-hightload",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38308509"
+	},
+	"item": [
+		{
+			"name": "status",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://otus.prodea.ru:8000/check",
+					"protocol": "http",
+					"host": [
+						"otus",
+						"prodea",
+						"ru"
+					],
+					"port": "8000",
+					"path": [
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://otus.prodea.ru:8000/user/register/?first_name=Miha&last_name=Jiha&login=login&password=password",
+					"protocol": "http",
+					"host": [
+						"otus",
+						"prodea",
+						"ru"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"register",
+						""
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": "Miha"
+						},
+						{
+							"key": "last_name",
+							"value": "Jiha"
+						},
+						{
+							"key": "login",
+							"value": "login"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://otus.prodea.ru:8000/login/?login=login&password=password",
+					"protocol": "http",
+					"host": [
+						"otus",
+						"prodea",
+						"ru"
+					],
+					"port": "8000",
+					"path": [
+						"login",
+						""
+					],
+					"query": [
+						{
+							"key": "login",
+							"value": "login"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://otus.prodea.ru:8000/user/get/?id=1",
+					"protocol": "http",
+					"host": [
+						"otus",
+						"prodea",
+						"ru"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"get",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://otus.prodea.ru:8000/user/all",
+					"protocol": "http",
+					"host": [
+						"otus",
+						"prodea",
+						"ru"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://otus.prodea.ru:8000/logout",
+					"protocol": "http",
+					"host": [
+						"otus",
+						"prodea",
+						"ru"
+					],
+					"port": "8000",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

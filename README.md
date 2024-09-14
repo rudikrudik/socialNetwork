@@ -7,6 +7,7 @@
 - [Требования](#requirements)
 - [Технологии](#technologies)
 - [Установка зависимостей и запуск:](#make)
+- [Postman collection](#postman)
 - [Методы:](#methods)
 - [Команда проекта](#command)
 
@@ -31,6 +32,11 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
 Приложение будет доступно по адресу http://ip_address:8000
+
+## <a id="postman">Postman collection</a>
+```
+https://web.postman.co/workspace/My-Workspace~e6608165-7abc-4110-8e4b-790113cae784/collection/38308509-34a437ed-e4d4-47fd-9dbd-745ae7380936
+```
 
 ## <a id="methoda">Методы</a>
 ```
