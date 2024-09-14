@@ -1,20 +1,28 @@
-import psycopg2
+import psycopg2, time
 from app.config import settings
 
 
-# TODO Сделать обработку исключений на случай ошибки подключения к базе
 class Database:
     def __init__(self, name, user, password, host, port):
-        try:
-            self.connect = psycopg2.connect(dbname=name,
-                                            user=user,
-                                            password=password,
-                                            host=host,
-                                            port=port)
-            self.cursor = self.connect.cursor()
-            print(f"Connected to PostgreSQL on {host}")
-        except psycopg2.Error as e:
-            print("Error connection to database", e)
+        for i in range(1, 6):
+            try:
+                self.connect = psycopg2.connect(dbname=name,
+                                                user=user,
+                                                password=password,
+                                                host=host,
+                                                port=port)
+                self.cursor = self.connect.cursor()
+                check_error = None
+            except psycopg2.Error as error:
+                print(f"Retry to connect to database. Attempt: {i}")
+                check_error = error
+            if i == 5:
+                raise check_error
+            if check_error:
+                time.sleep(5)
+            else:
+                print(f"Success connect to database. Attempt: {i}")
+                break
 
     def query(self, query):
         self.cursor.execute(query)

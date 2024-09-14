@@ -85,4 +85,9 @@ def get_all_users(token: str = Depends(dep.get_token)):
 
 @router.get("/check")
 def health_check():
-    return {"Message": "ok"}
+    result = db_user.get_user_by_id(1)
+    if result is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="Error connect to database")
+    else:
+        return {"Message": f"{result[0]}"}
