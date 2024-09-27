@@ -8,14 +8,14 @@ CREATE DATABASE api;
 CREATE TABLE IF NOT EXISTS public.users
 (
     id bigserial PRIMARY KEY,
-    first_name VARCHAR(20),
-    last_name VARCHAR(20),
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
     birthday date,
     gender VARCHAR(20),
     hobby text,
-    city VARCHAR(30),
+    city VARCHAR(40),
     password VARCHAR(80) NOT NULL,
-    login VARCHAR(20) NOT NULL,
+    login VARCHAR(30) NOT NULL,
     is_admin boolean DEFAULT false
 );
 
