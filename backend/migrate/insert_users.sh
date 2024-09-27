@@ -9,5 +9,5 @@ do
   data=$2
   city=$3
 
-  psql -U admin -d api -c "INSERT INTO(first_name, last_name, birthday, city) VALUES($first_name, $last_name, $data, $city)"
+  psql -U admin -d api -c "INSERT INTO users (first_name, last_name, birthday, city, password, login) VALUES($first_name, $last_name, $data, $city, $first_name, $last_name)"
 done < users.txt
