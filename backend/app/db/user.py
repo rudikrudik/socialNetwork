@@ -17,8 +17,8 @@ def find_user_by_login(login: str) -> dict:
 
 
 def search_users(first_name: str, last_name: str) -> dict:
-    result = db.query(f"SELECT * FROM users WHERE first_name LIKE '{first_name}%' AND last_name LIKE '{last_name}%';")
-    return result[0] if result else None
+    return db.query(f"SELECT first_name, last_name, birthday, gender, hobby, city FROM users "
+                    f"WHERE first_name LIKE '{first_name}%' AND last_name LIKE '{last_name}%';")
 
 
 def auth_user(login: str) -> dict:
