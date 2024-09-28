@@ -85,8 +85,11 @@ def get_all_users(token: str = Depends(dep.get_token)):
 
 @router.get("/user/search")
 def search_users(first_name: str, last_name: str):
-    return db_user.search_users(first_name, last_name)
-
+    if first_name and last_name:
+        return db_user.search_users(first_name, last_name)
+    else:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="Error data request")
 
 @router.get("/check")
 def health_check():
