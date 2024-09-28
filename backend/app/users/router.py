@@ -83,6 +83,11 @@ def get_all_users(token: str = Depends(dep.get_token)):
     return db_user.get_all_users()
 
 
+@router.get("/user/search")
+def search_users(first_name: str, last_name: str):
+    return db_user.search_users(first_name, last_name)
+
+
 @router.get("/check")
 def health_check():
     result = db_user.get_user_by_id(1)

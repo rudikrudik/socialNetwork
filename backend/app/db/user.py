@@ -16,6 +16,11 @@ def find_user_by_login(login: str) -> dict:
     return result[0] if result else None
 
 
+def search_users(first_name: str, last_name: str) -> dict:
+    result = db.query(f"SELECT * FROM users WHERE first_name LIKE '{first_name}%' AND last_name LIKE '{last_name}%';")
+    return result[0] if result else None
+
+
 def auth_user(login: str) -> dict:
     result = db.query(f"SELECT id, login, password FROM users WHERE login = '{login}';")
     return result[0] if result else None
