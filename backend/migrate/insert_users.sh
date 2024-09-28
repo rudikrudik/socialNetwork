@@ -4,8 +4,8 @@ do
   IFS=","
   set -- $line
   declare -a PARAMS="( $1 )"
-  first_name="${PARAMS[0]}"
-  last_name="${PARAMS[1]}"
+  first_name="${PARAMS[1]}"
+  last_name="${PARAMS[0]}"
   data=$2
   city=$3
 
