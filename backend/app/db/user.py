@@ -15,11 +15,16 @@ def find_user_by_login(login: str) -> dict:
     result = db.query(f"SELECT id FROM users WHERE login='{login}';")
     return result[0] if result else None
 
+# Sql select with no indexes
+# def search_users(first_name: str, last_name: str) -> dict:
+#     return db.query(f"SELECT id, first_name, last_name, birthday, gender, hobby, city FROM users "
+#                     f"WHERE first_name LIKE '{first_name}%' AND last_name LIKE '{last_name}%';")
+
 
 def search_users(first_name: str, last_name: str) -> dict:
-    return db.query(f"SELECT id, first_name, last_name, birthday, gender, hobby, city FROM users "
-                    f"WHERE first_name LIKE '{first_name}%' AND last_name LIKE '{last_name}%'"
-                    f"ORDER BY id;")
+    return db.query(f"SELECT id, first_name, last_name, birthday, gender, hobby, city F"
+                    f"ROM users WHERE LOWER(first_name)::text LIKE '{first_name.lower()}%'"
+                    f" AND LOWER(last_name)::text LIKE '{last_name.lower()}%';")
 
 
 def auth_user(login: str) -> dict:
