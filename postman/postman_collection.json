@@ -15,14 +15,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://otus.prodea.ru:8000/check",
+					"raw": "http://api.vsadmin.ru/check",
 					"protocol": "http",
 					"host": [
-						"otus",
-						"prodea",
+						"api",
+						"vsadmin",
 						"ru"
 					],
-					"port": "8000",
 					"path": [
 						"check"
 					]
@@ -36,14 +35,13 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://otus.prodea.ru:8000/user/register/?first_name=Miha&last_name=Jiha&login=login&password=password",
+					"raw": "http://api.vsadmin.ru/user/register/?first_name=Miha&last_name=Jiha&login=login&password=password",
 					"protocol": "http",
 					"host": [
-						"otus",
-						"prodea",
+						"api",
+						"vsadmin",
 						"ru"
 					],
-					"port": "8000",
 					"path": [
 						"user",
 						"register",
@@ -200,6 +198,39 @@
 					"port": "8000",
 					"path": [
 						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search_users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://otus.prodea.ru:8000/user/search/?first_name=Дми&last_name=Абр",
+					"protocol": "http",
+					"host": [
+						"otus",
+						"prodea",
+						"ru"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": "Дми"
+						},
+						{
+							"key": "last_name",
+							"value": "Абр"
+						}
 					]
 				}
 			},
