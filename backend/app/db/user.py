@@ -7,8 +7,7 @@ def get_all_users() -> dict:
 
 
 def get_user_by_id(id: int) -> dict:
-    result = db.query(f"SELECT * FROM users WHERE id = {id};")
-    return result[0] if result else None
+    return db.query_one(f"SELECT * FROM users WHERE id = {id};")
 
 
 def find_user_by_login(login: str) -> dict:

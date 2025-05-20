@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException, Response, Depends, status
+from fastapi.responses import FileResponse
 from app.users.schema import User, CreateUser, AuthUser
 from app.db import user as db_user
 from app.users import auth
@@ -6,7 +7,12 @@ from app.users import dependencies as dep
 
 
 router = APIRouter()
+favicon_path = 'favicon.ico'
 
+# Route to favicons
+@router.get('/favicon.ico', include_in_schema=False)
+async def favicon():
+    return FileResponse(favicon_path)
 
 @router.get(
     "/user/get/",

@@ -28,11 +28,16 @@ class Database:
         self.cursor.execute(query)
         return self.cursor.fetchall()
 
+    def query_one(self, query):
+        self.cursor.execute(query)
+        return self.cursor.fetchone()
+
     def insert(self, insert_query):
         self.cursor.execute(insert_query)
         self.connect.commit()
 
     def close(self):
+        print("Postgres Close connect")
         self.cursor.close()
         self.connect.close()
 
