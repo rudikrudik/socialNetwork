@@ -1,4 +1,4 @@
-import psycopg2, time
+import psycopg, time
 from app.config import settings
 
 
@@ -6,14 +6,14 @@ class Database:
     def __init__(self, name, user, password, host, port):
         for i in range(1, 6):
             try:
-                self.connect = psycopg2.connect(dbname=name,
+                self.connect = psycopg.connect(dbname=name,
                                                 user=user,
                                                 password=password,
                                                 host=host,
                                                 port=port)
                 self.cursor = self.connect.cursor()
                 check_error = None
-            except psycopg2.Error as error:
+            except psycopg.Error as error:
                 print(f"Retry to connect to database. Attempt: {i}")
                 check_error = error
             if i == 5:
