@@ -101,11 +101,14 @@ def search_users(first_name: str, last_name: str):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail="Error data request")
 
+
 @router.get("/check")
 def health_check():
-    result = db_user.get_user_by_id(1)
-    if result is None:
+    try:
+        result = db_user.get_user_by_id(1)
+        return {"Message": f"{result[0]}"}
+    except BaseException:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail="Error connect to database")
-    else:
-        return {"Message": f"{result[0]}"}
+
+

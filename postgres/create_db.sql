@@ -1,3 +1,6 @@
+--Add pg stat
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+
 --Create database api
 CREATE DATABASE api;
 

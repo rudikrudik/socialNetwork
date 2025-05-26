@@ -24,23 +24,25 @@ class Database:
                 print(f"Success connect to database. Attempt: {i}")
                 break
 
+    def close(self):
+        self.cursor.close()
+        self.connect.close()
+
     def query(self, query):
         self.cursor.execute(query)
         return self.cursor.fetchall()
 
     def query_one(self, query):
-        self.cursor.execute(query)
-        return self.cursor.fetchone()
+        try:
+            self.cursor.execute(query)
+            return self.cursor.fetchone()
+        except psycopg.OperationalError as error:
+            self.close()
+            raise RuntimeError('Failed to open database') from error
 
     def insert(self, insert_query):
         self.cursor.execute(insert_query)
         self.connect.commit()
-
-    def close(self):
-        print("Postgres Close connect")
-        self.cursor.close()
-        self.connect.close()
-
 
 db = Database(settings.DB_NAME,
               settings.DB_USER,
