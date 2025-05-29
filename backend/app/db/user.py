@@ -10,6 +10,7 @@ def db_query_read(query: str) -> dict:
                   settings.DB_HOST,
                   settings.DB_PORT)
     result = db.query_one(query)
+    print("data")
     db.close()
     return result
 
