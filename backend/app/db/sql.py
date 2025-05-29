@@ -37,12 +37,9 @@ class Database:
         return self.cursor.fetchall()
 
     def query_one(self, query):
-        try:
-            self.cursor.execute(query)
-            return self.cursor.fetchone()
-        except psycopg.OperationalError as error:
-            self.close()
-            raise RuntimeError('Failed to open database') from error
+        self.cursor.execute(query)
+        return self.cursor.fetchone()
+
 
     def insert(self, insert_query):
         self.cursor.execute(insert_query)
