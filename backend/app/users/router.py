@@ -43,7 +43,7 @@ def get_user(id: int) -> User:
             "city": result[6]}
 
 
-@router.get("/user/register",
+@router.post("/user/register",
              description="Регистрация нового пользователя",
              responses={
                 400: {"description": "Невалидные данные"},

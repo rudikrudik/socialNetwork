@@ -4,9 +4,6 @@ from app.config import settings
 
 
 def db_query(query: str, one_string_result=True, port=settings.DB_PORT_READ) -> dict:
-    print("QUERY", query)
-    print("One string", one_string_result)
-    print("PORT", port)
     """
     :param query: Сырой SQL запрос
     :param one_string_result: Должна ли возвращаться одна строка или несколько
