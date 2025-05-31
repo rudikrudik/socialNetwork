@@ -6,7 +6,8 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Otus Highload"
     PROJECT_VERSION: str = "0.0.1"
     DB_HOST: str
-    DB_PORT: int
+    DB_PORT_READ: int
+    DB_PORT_WRITE: int
     DB_NAME: str
     DB_USER: str
     DB_PASSWORD: str

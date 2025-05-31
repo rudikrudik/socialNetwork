@@ -43,17 +43,15 @@ def get_user(id: int) -> User:
             "city": result[6]}
 
 
-@router.post(
-    "/user/register",
-    description="Регистрация нового пользователя",
-    responses={
-        400: {"description": "Невалидные данные"},
-        200: {
-            "content": {"application/json": {}},
-            "description": "Успешная регистрация",
-        }
-    },
-)
+@router.get("/user/register",
+             description="Регистрация нового пользователя",
+             responses={
+                400: {"description": "Невалидные данные"},
+                200: {
+                    "content": {"application/json": {}},
+                    "description": "Успешная регистрация",
+                        }
+                })
 def register_user(first_name: str, last_name: str, login: str, password: str):
     if db_user.find_user_by_login(login) is not None:
         raise HTTPException(status_code=status.HTTP_200_OK,

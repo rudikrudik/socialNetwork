@@ -3,32 +3,40 @@ from app.users.auth import get_hashed_password
 from app.config import settings
 
 
-def db_query_read(query: str, one: bool) -> dict:
+def db_query(query: str, one_string_result=True, port=settings.DB_PORT_READ) -> dict:
+    print("QUERY", query)
+    print("One string", one_string_result)
+    print("PORT", port)
+    """
+    :param query: Сырой SQL запрос
+    :param one_string_result: Должна ли возвращаться одна строка или несколько
+    :param port: По умолчанию 5000 порт для записи в базу 5001 для чтения
+    :return:
+    """
     db = data_base(settings.DB_NAME,
-                  settings.DB_USER,
-                  settings.DB_PASSWORD,
-                  settings.DB_HOST,
-                  settings.DB_PORT)
-    if one:
-        result = db.query_one(query)
+                   settings.DB_USER,
+                   settings.DB_PASSWORD,
+                   settings.DB_HOST,
+                   port)
+    if port == settings.DB_PORT_WRITE:
+        db.insert(query)
     else:
-        result = db.query(query)
-
+        return db.query_one(query) if one_string_result else db.query(query)
     db.close()
-    return result
 
 
 def get_all_users() -> dict:
-    return db_query_read("SELECT first_name, last_name, birthday, gender, hobby, city FROM users;", False)
+    return db_query("SELECT first_name, last_name, birthday, gender, hobby, city FROM users;", False)
 
 
 def get_user_by_id(id: int) -> dict:
-    return db_query_read(f"SELECT * FROM users WHERE id = {id};", True)
+    return db_query(f"SELECT * FROM users WHERE id = {id};")
 
 
 def find_user_by_login(login: str) -> dict:
-    result = db_query_read(f"SELECT id FROM users WHERE login='{login}';", True)
-    return result[0] if result else None
+    return db_query(f"SELECT id FROM users WHERE login='{login}';")
+
+
 
 # Sql select with no indexes
 # def search_users(first_name: str, last_name: str) -> dict:
@@ -37,20 +45,20 @@ def find_user_by_login(login: str) -> dict:
 
 
 def search_users(first_name: str, last_name: str) -> dict:
-    return db_query_read(f"SELECT id, first_name, last_name, birthday, gender, hobby, city F"
+    return db_query(f"SELECT id, first_name, last_name, birthday, gender, hobby, city F"
                     f"ROM users WHERE LOWER(first_name)::text LIKE '{first_name.lower()}%'"
                     f" AND LOWER(last_name)::text LIKE '{last_name.lower()}%';", False)
 
 
 def auth_user(login: str) -> dict:
-    result = db_query_read(f"SELECT id, login, password FROM users WHERE login = '{login}';", True)
+    result = db_query(f"SELECT id, login, password FROM users WHERE login = '{login}';")
     return result[0] if result else None
 
 
 def create_user(first_name: str, last_name: str, login: str, password: str):
-    db.insert(f"INSERT INTO users(first_name, last_name, login, password) "
-              f"VALUES('{first_name}', "
-              f"'{last_name}', "
-              f"'{login}', "
-              f"'{get_hashed_password(password)}');")
+    db_query(f"INSERT INTO users(first_name, last_name, login, password) "
+             f"VALUES('{first_name}', "
+             f"'{last_name}', "
+             f"'{login}', "
+             f"'{get_hashed_password(password)}');", True, settings.DB_PORT_WRITE)
     return find_user_by_login(login)
