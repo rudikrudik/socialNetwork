@@ -24,6 +24,22 @@ class CreateUser(BaseModel):
     password: str = Field(examples=["Пароль"])
 
 
+class IdUser(BaseModel):
+    id: int = Field(examples=[1])
+
+
+class SearchUser(BaseModel):
+    first_name: str = Field(examples=["Имя"])
+    last_name: str = Field(examples=["Фамилия"])
+
+
 class AuthUser(BaseModel):
+    login: str = Field(examples=["login"])
+    password: str = Field(examples=["password"])
+
+
+class RegisterNewUser(BaseModel):
+    first_name: str = Field(examples=["Имя"])
+    last_name: str = Field(examples=["Фамилия"])
     login: str = Field(examples=["login"])
     password: str = Field(examples=["password"])

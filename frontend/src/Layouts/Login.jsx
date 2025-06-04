@@ -8,6 +8,7 @@ function Login () {
     const [loginInput, setLoginInput] = useState("")
     const [passwordInput, setPasswordInput] = useState("")
     const [token, setToken] = useState("error");
+    const [loginState, setLoginState] = useState()
 
     let result = ""
 
@@ -34,13 +35,19 @@ return (
                         try {
                             result  = await trigger({ login: loginInput, password: passwordInput})
                             console.log(result)
-                            //setToken(result["detail"])
+                            if (result["token"]) {
+                                setToken(result["token"])
+                                setLoginState("Login success")
+                            }
+                            else {
+                                setLoginState("Login failed")
+                            }
                         } catch (e) {
                             // error handling
                         }
                     }}
                 >Login</button>
-            <p>Login status: {token}</p>
+            <p>Login status: {loginState}</p>
         </div>
     </div>
 </div>
