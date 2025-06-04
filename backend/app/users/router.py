@@ -37,7 +37,7 @@ def get_user(id_user: IdUser) -> User:
     if result is None:
         raise HTTPException(status_code=404, detail=f"User with id: {id_user.id} does not exist")
     return {"id": result[0],
-            "first name": result[1],
+            "first_name": result[1],
             "last_name": result[2],
             "birthday": result[3],
             "gender": result[4],
