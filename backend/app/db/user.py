@@ -49,7 +49,7 @@ def search_users(first_name: str, last_name: str) -> dict:
 
 def auth_user(login: str) -> dict:
     result = db_query(f"SELECT id, login, password FROM users WHERE login = '{login}';")
-    return result[0] if result else None
+    return result if result else None
 
 
 def create_user(first_name: str, last_name: str, login: str, password: str):

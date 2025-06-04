@@ -61,13 +61,14 @@ def register_user(first_name: str, last_name: str, login: str, password: str):
 
 
 @router.post("/login")
-def login_user(response: Response, login: str, password: str):
-    result = db_user.auth_user(login)
+#def login_user(response: Response, login: str, password: str):
+def login_user(response: Response, loginItem: AuthUser):
+    result = db_user.auth_user(loginItem.login)
     if result is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="Wrong username or password")
 
-    if not auth.verify_password(password, result[2]):
+    if not auth.verify_password(loginItem.password, result[2]):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="Wrong your username or password")
 

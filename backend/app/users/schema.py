@@ -25,5 +25,5 @@ class CreateUser(BaseModel):
 
 
 class AuthUser(BaseModel):
-    login: str = Field(examples=["Имя входа"])
-    password: str = Field(examples=["Пароль"])
+    login: str = Field(examples=["login"])
+    password: str = Field(examples=["password"])
