@@ -118,7 +118,7 @@ def get_user_posts(token: str = Depends(dep.get_token)):
     except BaseException:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Posts not found"
+            detail="User Posts not found"
         )
 
 
