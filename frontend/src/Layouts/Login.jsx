@@ -4,6 +4,7 @@ import sendRequest from "../Components/POSTdata";
 import useSWRMutation from "swr/mutation";
 import Cookies from 'js-cookie';
 import {useNavigate} from 'react-router-dom';
+import '../config';
 
 
 function Login () {
@@ -21,18 +22,19 @@ function Login () {
 
     const {
         trigger
-    } = useSWRMutation('http://api.vsadmin.ru/login/', sendRequest);
+    } = useSWRMutation(`${global.config.urls.baseUrl}/login/`, sendRequest);
 
     const handlerClick = async () => {
         try {
             let result = await trigger({login: loginInput, password: passwordInput})
 
             if (result["token"]) {
-                Cookies.set('token', result["token"], {
-                    expires: 7,
-                    secure: true,
-                    sameSite: 'strict'
-                        });
+                Cookies.set('user_access_token', result["token"],
+                    {
+                        secure: true,
+                        sameSite: "Strict",
+                        expires: 7
+                    });
                 navigate('/');
                     }
             }

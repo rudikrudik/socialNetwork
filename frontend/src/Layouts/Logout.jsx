@@ -5,7 +5,7 @@ import React from "react";
 function Logout () {
     const navigate = useNavigate();
 
-    Cookies.remove('token');
+    Cookies.remove('user_access_token');
     navigate('/login');
 
     return (
