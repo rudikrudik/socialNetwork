@@ -6,6 +6,8 @@ import LeftMenu from "./Layouts/LeftMenu";
 import RightMenu from "./Layouts/RightMenu";
 import Profile from "./Layouts/Profile";
 import Login from "./Layouts/Login";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import Logout from "./Layouts/Logout";
 
 function App() {
     return (
@@ -15,9 +17,10 @@ function App() {
                 <div className="wrap_content">
                     <LeftMenu/>
                     <Routes>
-                        <Route exact path="/" element={<Main />} />
-                        <Route exact path="/profile" element={<Profile />} />
+                        <Route exact path="/" element={<ProtectedRoute><Main /></ProtectedRoute>} />
+                        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
                         <Route exact path="/login" element={<Login />} />
+                        <Route exact path="/logout" element={<Logout />} />
                     </Routes>
                     <RightMenu/>
                 </div>

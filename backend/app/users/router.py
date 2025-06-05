@@ -109,6 +109,32 @@ def search_users(search_user: SearchUser):
                             detail="Error data request")
 
 
+@router.get("/user/posts")
+def get_user_posts(token: str = Depends(dep.get_token)):
+    user_id = dep.get_current_user(token)
+
+    try:
+        return db_user.get_user_posts(user_id)
+    except BaseException:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Posts not found"
+        )
+
+
+@router.get("/user/friends")
+def get_user_posts(token: str = Depends(dep.get_token)):
+    user_id = dep.get_current_user(token)
+
+    try:
+        return db_user.get_user_friends(user_id)
+    except BaseException:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Friends not found"
+        )
+
+
 @router.get("/check")
 def health_check():
     try:

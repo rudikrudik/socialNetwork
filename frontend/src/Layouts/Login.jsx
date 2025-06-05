@@ -1,16 +1,15 @@
 import React, {useState} from "react";
 import profile_img from "../images/profile/6.jpg"
-import useSWRMutation from "swr/mutation";
 import sendRequest from "../Components/POSTdata";
+import useSWRMutation from "swr/mutation";
+import Cookies from 'js-cookie';
+import {useNavigate} from 'react-router-dom';
 
 
 function Login () {
     const [loginInput, setLoginInput] = useState("")
     const [passwordInput, setPasswordInput] = useState("")
-    const [token, setToken] = useState("error");
-    const [loginState, setLoginState] = useState()
-
-    let result = ""
+    const navigate = useNavigate();
 
     const handleInputLogin = (event) => {
         setLoginInput(event.target.value);
@@ -24,30 +23,31 @@ function Login () {
         trigger
     } = useSWRMutation('http://api.vsadmin.ru/login/', sendRequest);
 
+    const handlerClick = async () => {
+        try {
+            let result = await trigger({login: loginInput, password: passwordInput})
+
+            if (result["token"]) {
+                Cookies.set('token', result["token"], {
+                    expires: 7,
+                    secure: true,
+                    sameSite: 'strict'
+                        });
+                navigate('/');
+                    }
+            }
+        catch (e) {
+                // error handling
+            }
+        }
+
 return (
 <div className="main">
     <div className="profile" style={{backgroundImage: `url(${profile_img})`, backgroundSize: 'cover'}}>
         <div className="profile_data">
             <input type="text" value={loginInput} onChange={handleInputLogin}/>
             <input type="text" value={passwordInput} onChange={handleInputPassword}/>
-                <button
-                    onClick={async () => {
-                        try {
-                            result  = await trigger({ login: loginInput, password: passwordInput})
-                            console.log(result)
-                            if (result["token"]) {
-                                setToken(result["token"])
-                                setLoginState("Login success")
-                            }
-                            else {
-                                setLoginState("Login failed")
-                            }
-                        } catch (e) {
-                            // error handling
-                        }
-                    }}
-                >Login</button>
-            <p>Login status: {loginState}</p>
+                <button onClick={handlerClick}>Login</button>
         </div>
     </div>
 </div>

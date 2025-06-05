@@ -59,3 +59,11 @@ def create_user(first_name: str, last_name: str, login: str, password: str):
              f"'{login}', "
              f"'{get_hashed_password(password)}');", True, settings.DB_PORT_WRITE)
     return find_user_by_login(login)
+
+
+def get_user_posts(id: int):
+    return db_query(f"SELECT * FROM user_posts WHERE user_id = '{id}'", False)
+
+
+def get_user_friends(id: int):
+    return db_query(f"SELECT * FROM user_friends WHERE user_id = '{id}'", False)

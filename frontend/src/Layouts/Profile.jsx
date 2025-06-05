@@ -1,6 +1,7 @@
 import React from "react";
 import profile_img from "../images/profile/6.jpg"
 
+
 function Profile () {
     return (
         <div className="main">
