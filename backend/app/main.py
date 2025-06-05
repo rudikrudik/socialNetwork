@@ -6,16 +6,16 @@ import uvicorn
 app = FastAPI(title=settings.PROJECT_NAME,
               version=settings.PROJECT_VERSION)
 
-origins = ["*"]
+#origins = ["*"]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-    expose_headers=["*"]
-)
+#app.add_middleware(
+#    CORSMiddleware,
+#    allow_origins=origins,
+#    allow_credentials=True,
+#    allow_methods=["*"],
+#    allow_headers=["*"],
+#    expose_headers=["*"]
+#)
 
 
 # Include all route from apis.v1

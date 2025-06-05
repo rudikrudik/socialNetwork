@@ -8,6 +8,7 @@ import Profile from "./Layouts/Profile";
 import Login from "./Layouts/Login";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Logout from "./Layouts/Logout";
+import Posts from "./Layouts/Posts";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Routes>
                         <Route exact path="/" element={<ProtectedRoute><Main /></ProtectedRoute>} />
                         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
+                        <Route path="/posts" element={<ProtectedRoute><Posts /></ProtectedRoute>}/>
                         <Route exact path="/login" element={<Login />} />
                         <Route exact path="/logout" element={<Logout />} />
                     </Routes>
