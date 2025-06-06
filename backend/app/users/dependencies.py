@@ -10,8 +10,8 @@ def get_token(request: Request) -> str:
     try:
         token = request.headers.get("cookies").split("=")[1]
     except AttributeError:
-        raise HTTPException(status_code=status.HTTP_200_OK,
-                            detail="Token not found")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Token not set")
 
     if not token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Token not found')
