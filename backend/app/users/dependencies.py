@@ -10,7 +10,7 @@ def get_token(request: Request) -> str:
     token = request.headers.get('user_access_token')
     print("Cookie: ", request.cookies.get("cookies"))
     print("Headers: ", request.headers.get("cookies"))
-    print("user acces: ", request.headers.get("user_access_token"))
+    print("user access: ", request.headers.get("user_access_token"))
 
 
     if not token:
