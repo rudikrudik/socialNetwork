@@ -43,3 +43,11 @@ class RegisterNewUser(BaseModel):
     last_name: str = Field(examples=["Фамилия"])
     login: str = Field(examples=["login"])
     password: str = Field(examples=["password"])
+
+
+class UserPost(BaseModel):
+    id_post: int
+    id_user: int
+    post_date: datetime
+    post_content: str
+    post_likes: str
