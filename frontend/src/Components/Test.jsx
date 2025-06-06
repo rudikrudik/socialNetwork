@@ -13,9 +13,6 @@ function Test(props) {
 
     if (error) return <p>Error Loading data</p>
     if (isLoading) return <p>Error Loading data</p>
-
-    console.log({data})
-
     return (
         <div className="wrapper-card">
             <p>{data.id}</p>

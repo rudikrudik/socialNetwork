@@ -3,6 +3,7 @@ import useSWR from "swr";
 import Cookies from "js-cookie";
 import fetcher_cookie from "../Components/FetcherCookie";
 import '../config';
+import Post from "./Post";
 
 function Posts () {
     const token = Cookies.get('user_access_token');
@@ -14,15 +15,18 @@ function Posts () {
         'Content-Type': 'application/json'
     };
     const {
-        data
+        data,
+        isLoading
     } = useSWR([`${global.config.urls.baseUrl}/user/posts`, headers], ([url, headers]) => fetcher_cookie(url, headers));
 
-    console.log("data ", data)
-
+    if (isLoading) return <div>is loading</div>;
+    
     return (
         <div className="main">
-            <div className="posts">
-                <p>Posts</p>
+            <div>
+                {data.map((item) => {
+                    return <Post key={item[0]} data={item}/>
+                })}
             </div>
         </div>
     )

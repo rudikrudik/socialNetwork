@@ -62,8 +62,12 @@ def create_user(first_name: str, last_name: str, login: str, password: str):
 
 
 def get_user_posts(id: int):
-    return db_query(f"SELECT id, user_id, post_date_create, post_content, post_images, post_likes "
-                    f"FROM user_posts WHERE user_id = '{id}'", False)
+    return db_query(f"SELECT * FROM user_posts WHERE user_id = '{id}'", False)
+
+
+def delete_user_post(id_user: int, id_post: int):
+    return db_query(f"DELETE * FROM user_posts WHERE user_id = '{id_user}' AND id = '{id_post}'",
+                    True, settings.DB_PORT_WRITE)
 
 
 def get_user_friends(id: int):

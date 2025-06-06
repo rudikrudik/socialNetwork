@@ -122,6 +122,19 @@ def get_user_posts(token: str = Depends(dep.get_token)):
         )
 
 
+@router.post("/post/delete")
+def get_user_posts(id_post: int, token: str = Depends(dep.get_token)):
+    user_id = dep.get_current_user(token)
+    try:
+        db_user.delete_user_post(user_id, id_post)
+        return {"Post Delete:", f"{id_post}"}
+    except BaseException:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User Post not Delete"
+        )
+
+
 @router.get("/user/friends")
 def get_user_posts(token: str = Depends(dep.get_token)):
     user_id = dep.get_current_user(token)

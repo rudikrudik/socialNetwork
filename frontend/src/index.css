@@ -1,11 +1,13 @@
-html, body {margin: 0}
+html, body {
+  margin: 0;
+  background-color: black;
+}
 
 .wrap {
   display: flex;
   flex-flow: column nowrap;
   width: 100vw;
   height: 100vh;
-  background-color: black;
 }
 
 .wrap_content {
@@ -94,6 +96,7 @@ html, body {margin: 0}
   border-radius: 10px;
   box-shadow: 0 0 0 1px #211d1e;
   max-width: 200px;
+  min-width: 200px;
 }
 
 .right_menu_block {
@@ -129,13 +132,108 @@ html, body {margin: 0}
   margin-top: auto;
 }
 
-.posts {
+.post {
   border: 1px solid #403a3b;
   background-color: #211d1e;
   margin-top: 20px;
   border-radius: 10px;
   box-shadow: 0 0 0 1px #211d1e;
-  min-height: 400px;
   display: flex;
   flex-direction: column;
+}
+
+.post_author_menu_wrapper {
+  display: flex;
+  border-bottom: 1px solid #403a3b;
+}
+
+.post_author {
+  display: flex;
+  max-height: 60px;
+}
+
+.post_author p{
+  align-content: center;
+  margin: 10px 10px 10px 10px;
+}
+
+.post_author img{
+  align-content: center;
+  margin: 10px 10px 10px 10px;
+  border-radius: 10px;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.post_post_date {
+  display: flex;
+  color: #9a9797;
+  min-width: 220px;
+}
+
+.post_post_date p{
+  align-content: center;
+  margin-right: 20px;
+}
+
+.post_content_menu {
+  margin: 0 20px 0 20px;
+}
+
+
+.post_edit_menu_wrapper {
+  display: flex;
+  border-top: 1px solid #403a3b;
+  min-height: 50px;
+}
+
+.post_edit_menu {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+  margin: 10px;
+}
+
+.post_menu_button_edit {
+  top: 10px;
+  right: .6rem;
+  text-decoration: none;
+  color: honeydew;
+  background: #616047;
+  text-align: center;
+  letter-spacing: .5px;
+  transition: background-color .2s ease-out;
+  cursor: pointer;
+  font-size: 14px;
+  outline: 0;
+  border: none;
+  border-radius: 10px;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 16px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.post_menu_button_delete {
+  top: 10px;
+  right: .6rem;
+  text-decoration: none;
+  color: honeydew;
+  background: #61474b;
+  text-align: center;
+  letter-spacing: .5px;
+  transition: background-color .2s ease-out;
+  cursor: pointer;
+  font-size: 14px;
+  outline: 0;
+  border: none;
+  border-radius: 10px;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 16px;
+  vertical-align: middle;
+  margin-right: 10px;
 }
