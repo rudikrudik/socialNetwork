@@ -10,7 +10,7 @@ function Posts () {
     const headers = {
         mode: "cors",
         'Access-Control-Allow-Origin': 'http://localhost:3000',
-        Cookies: `user_access_token=${token}`,
+        //Cookies: `user_access_token=${token}`,
         'Content-Type': 'application/json'
     };
     const {

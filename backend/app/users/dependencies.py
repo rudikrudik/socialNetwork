@@ -9,7 +9,7 @@ from app.db import user as db_user
 def get_token(request: Request) -> str:
     try:
         token = request.headers.get("cookies").split("=")[1]
-    except HTTPException:
+    except AttributeError:
         raise HTTPException(status_code=status.HTTP_200_OK,
                             detail="Token not found")
 
