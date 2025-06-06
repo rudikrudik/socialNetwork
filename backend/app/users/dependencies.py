@@ -10,7 +10,7 @@ def get_token(request: Request) -> str:
     token = request.headers.get('user_access_token')
 
     for i in request.headers:
-        print("reg data: ", i)
+        print("data from reg: ", i)
 
     if not token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Token not found')
