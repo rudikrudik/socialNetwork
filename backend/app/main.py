@@ -6,7 +6,9 @@ import uvicorn
 app = FastAPI(title=settings.PROJECT_NAME,
               version=settings.PROJECT_VERSION)
 
-origins = ["http://api.vsadmin.ru/"]
+origins = ["http://api.vsadmin.ru/",
+           "http://localhost:3000/",
+           ]
 
 app.add_middleware(
     CORSMiddleware,
