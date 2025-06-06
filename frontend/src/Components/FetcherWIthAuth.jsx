@@ -1,12 +1,13 @@
-const fetch_with_args = async (url, headers, {arg}) => {
+const fetch_with_args = async (url, arg) => {
 //    return await fetch(url, {
 //        method: 'POST',
 //       headers: {
 //            'Content-Type': 'application/json',
 //        },
-//        body: JSON.stringify(arg),
+//       body: JSON.stringify(arg),
 //    }).then(res => res.json());
-    const res = await fetch(url, { headers }, {arg});
+
+    const res = await fetch(url, arg);
     if (!res.ok) {
         const error = new Error('An error occurred while fetching the data.');
         error.info = await res.json();

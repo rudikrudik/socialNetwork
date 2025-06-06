@@ -32,21 +32,30 @@ function Posts(props) {
     };
 
     const token = Cookies.get('user_access_token');
+    const id = props.data[0];
 
     const headers = {
-        mode: "cors",
         method: 'POST',
         'Access-Control-Allow-Origin': 'http://localhost:3000',
         Cookies: `user_access_token=${token}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
     };
 
-    const id = props.data[0];
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Access-Control-Allow-Origin': 'http://localhostdata:3000',
+            Cookies: `user_access_token=${token}`,
+            'Content-Type': 'application/json'},
+        body: JSON.stringify({id: props.data[0]})
+    };
+
 
     const {
         trigger
-    } = useSWRMutation([`${global.config.urls.baseUrl}/post/delete`, headers, id],
-        ([url, headers, props]) => fetcher_cookie(url, headers, id));
+    } = useSWRMutation([`${global.config.urls.baseUrl}/post/delete`, requestOptions],
+        ([url, requestOptions]) => fetch_with_args(url, requestOptions));
 
 
     const ConfirmDelete = async () => {

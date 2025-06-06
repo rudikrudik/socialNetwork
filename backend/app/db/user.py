@@ -66,7 +66,7 @@ def get_user_posts(id: int):
 
 
 def delete_user_post(id_user: int, id_post: int):
-    return db_query(f"DELETE * FROM user_posts WHERE user_id = '{id_user}' AND id = '{id_post}'",
+    return db_query(f"DELETE FROM user_posts WHERE user_id = '{id_user}' AND id = '{id_post}'",
                     True, settings.DB_PORT_WRITE)
 
 
