@@ -1,5 +1,5 @@
 const fetcher_cookie = async (url, headers) => {
-    const res = await fetch(url, { headers });
+    const res = await fetch(url, { headers, credentials: 'include'});
     if (!res.ok) {
         const error = new Error('An error occurred while fetching the data.');
         error.info = await res.json();

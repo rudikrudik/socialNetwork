@@ -8,6 +8,8 @@ function Posts () {
     const token = Cookies.get('user_access_token');
 
     const headers = {
+        "Access-Control-Allow-Origin": 'http://localhost:3000',
+        Cookies: `user_access_token=${token}`,
         user_access_token: token,
         'Content-Type': 'application/json'
     };

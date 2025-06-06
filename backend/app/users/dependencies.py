@@ -12,9 +12,6 @@ def get_token(request: Request) -> str:
     for i in request.headers:
         print("data from reg: ", i)
 
-    for i in request.cookies:
-        print("coockie: ", i)
-
     if not token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Token not found')
     return token
