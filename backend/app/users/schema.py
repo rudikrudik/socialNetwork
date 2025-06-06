@@ -48,6 +48,6 @@ class RegisterNewUser(BaseModel):
 class UserPost(BaseModel):
     id_post: int
     id_user: int
-    post_date: datetime
+    post_date: str
     post_content: str
     post_likes: str

@@ -22,9 +22,6 @@ function Posts () {
     return (
         <div className="main">
             <div className="posts">
-                    {data.map((element) => {
-                        <p>{element}</p>
-                    })}
                 <p>Posts</p>
             </div>
         </div>
