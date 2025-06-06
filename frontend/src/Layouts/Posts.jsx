@@ -20,7 +20,7 @@ function Posts () {
     } = useSWR([`${global.config.urls.baseUrl}/user/posts`, headers], ([url, headers]) => fetcher_cookie(url, headers));
 
     if (isLoading) return <div>is loading</div>;
-    
+
     return (
         <div className="main">
             <div>

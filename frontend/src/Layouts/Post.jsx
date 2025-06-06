@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react'
 import profile_img from "../images/profile/6.jpg"
-
-
-//<p>Images: {props.data[4]}</p>
+import Cookies from "js-cookie";
+import useSWR from "swr";
+import fetch_with_args from "../Components/FetcherWIthAuth";
+import useSWRMutation from "swr/mutation";
+import fetcher_cookie from "../Components/FetcherCookie";
 
 function Posts(props) {
     const date = new Date(Date.parse(props.data[2].toString()));
@@ -18,6 +20,7 @@ function Posts(props) {
     const [isOpen, setIsOpen] = useState(false);
     const dialogRef = useRef(null);
 
+
     const openDialog = () => {
         setIsOpen(true);
         dialogRef.current.showModal();
@@ -28,11 +31,32 @@ function Posts(props) {
         dialogRef.current.close();
     };
 
-    const confirmDelete = () => {
+    const token = Cookies.get('user_access_token');
+
+    const headers = {
+        mode: "cors",
+        method: 'POST',
+        'Access-Control-Allow-Origin': 'http://localhost:3000',
+        Cookies: `user_access_token=${token}`,
+        'Content-Type': 'application/json'
+    };
+
+    const id = props.data[0];
+
+    const {
+        trigger
+    } = useSWRMutation([`${global.config.urls.baseUrl}/post/delete`, headers, id],
+        ([url, headers, props]) => fetcher_cookie(url, headers, id));
+
+
+    const ConfirmDelete = async () => {
         setIsOpen(false);
-        console.log(props.data[0])
+        console.log("Before Delete", props.data[0])
+        let result = await trigger({id: props.data[0]})
+        console.log("After Delete result", result)
         dialogRef.current.close();
     };
+
 
     return (
         <div className="post">
@@ -56,7 +80,7 @@ function Posts(props) {
                         <h2>Dialog Title</h2>
                         <p>This is the content of the dialog.</p>
                         <button onClick={closeDialog}>Cancel</button>
-                        <button onClick={confirmDelete}>Delete</button>
+                        <button onClick={ConfirmDelete}>Delete</button>
                     </dialog>
                 </div>
             </div>
