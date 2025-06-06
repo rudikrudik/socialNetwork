@@ -8,12 +8,9 @@ from app.db import user as db_user
 #  Get JWT token
 def get_token(request: Request) -> str:
     token = request.headers.get('user_access_token')
-
-    for i in request.headers:
-        print("data from reg: ", i)
-
     print("Cookie: ", request.cookies.get("cookies"))
     print("Headers: ", request.headers.get("cookies"))
+    print("user acces: ", request.headers.get("user_access_token"))
 
 
     if not token:
