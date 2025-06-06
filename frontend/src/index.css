@@ -105,11 +105,6 @@ html, body {margin: 0}
   max-width: 200px;
 }
 
-.profile p{
-  font-size: 20px;
-  margin: 16px 0 10px 10px;
-}
-
 .profile {
   border: 1px solid #403a3b;
   background-color: #211d1e;
@@ -121,10 +116,26 @@ html, body {margin: 0}
   flex-direction: column;
 }
 
+.profile p{
+  font-size: 20px;
+  margin: 16px 0 10px 10px;
+}
+
 .profile_data {
   border: 1px solid #403a3b;
   background-color: #211d1e;
   border-radius: 10px;
   box-shadow: 0 0 0 1px #211d1e;
   margin-top: auto;
+}
+
+.posts {
+  border: 1px solid #403a3b;
+  background-color: #211d1e;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px #211d1e;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
 }

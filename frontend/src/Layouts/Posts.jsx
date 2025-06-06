@@ -10,22 +10,22 @@ function Posts () {
     const headers = {
         mode: "cors",
         'Access-Control-Allow-Origin': 'http://localhost:3000',
-        //Cookies: `user_access_token=${token}`,
+        Cookies: `user_access_token=${token}`,
         'Content-Type': 'application/json'
     };
     const {
         data
     } = useSWR([`${global.config.urls.baseUrl}/user/posts`, headers], ([url, headers]) => fetcher_cookie(url, headers));
 
-
-    console.log("Data", data)
+    console.log("data ", data)
 
     return (
         <div className="main">
             <div className="posts">
-                <div className="profile_data">
-                    <p>Posts</p>
-                </div>
+                    {data.map((element) => {
+                        <p>{element}</p>
+                    })}
+                <p>Posts</p>
             </div>
         </div>
     )

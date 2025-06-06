@@ -108,6 +108,7 @@ def search_users(search_user: SearchUser):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail="Error data request")
 
+
 @router.get("/user/posts")
 def get_user_posts(token: str = Depends(dep.get_token)):
     user_id = dep.get_current_user(token)

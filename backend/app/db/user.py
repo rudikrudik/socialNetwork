@@ -62,7 +62,8 @@ def create_user(first_name: str, last_name: str, login: str, password: str):
 
 
 def get_user_posts(id: int):
-    return db_query(f"SELECT * FROM user_posts WHERE user_id = '{id}'", False)
+    return db_query(f"SELECT id, user_id, post_date_create, post_content, post_images, post_likes "
+                    f"FROM user_posts WHERE user_id = '{id}'", False)
 
 
 def get_user_friends(id: int):
