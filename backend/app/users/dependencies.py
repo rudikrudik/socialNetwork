@@ -8,6 +8,7 @@ from app.db import user as db_user
 #  Get JWT token
 def get_token(request: Request) -> str:
     token = request.headers.get('user_access_token')
+    print("Token from get_token: ", token)
 
     if not token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Token not found')
