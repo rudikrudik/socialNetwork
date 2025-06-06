@@ -126,7 +126,7 @@ def get_user_posts(token: str = Depends(dep.get_token)):
 def get_user_posts(id_post: IdUser, token: str = Depends(dep.get_token)):
     user_id = dep.get_current_user(token)
     try:
-        result = db_user.delete_user_post(user_id, id_post)
+        db_user.delete_user_post(user_id, id_post.id)
         return {"Post Delete:", f"{id_post}"}
     except BaseException:
         raise HTTPException(
