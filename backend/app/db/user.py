@@ -34,7 +34,6 @@ def find_user_by_login(login: str) -> dict:
     return db_query(f"SELECT id FROM users WHERE login='{login}';")
 
 
-
 # Sql select with no indexes
 # def search_users(first_name: str, last_name: str) -> dict:
 #     return db.query(f"SELECT id, first_name, last_name, birthday, gender, hobby, city FROM users "
@@ -67,6 +66,12 @@ def get_user_posts(id: int):
 
 def delete_user_post(id_user: int, id_post: int):
     return db_query(f"DELETE FROM user_posts WHERE user_id = '{id_user}' AND id = '{id_post}'",
+                    True, settings.DB_PORT_WRITE)
+
+
+def create_user_post(id_user: int, post_content: str):
+    return db_query(f"INSERT INTO user_posts (user_id, post_date_create, post_content) VALUES ({id_user},"
+                    f"date_trunc('second', now()::timestamp), '{post_content}');",
                     True, settings.DB_PORT_WRITE)
 
 

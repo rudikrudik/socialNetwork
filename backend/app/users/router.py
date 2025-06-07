@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Response, Depends, status
 from fastapi.responses import FileResponse
-from app.users.schema import User, CreateUser, AuthUser, RegisterNewUser, SearchUser, IdUser
+from app.users.schema import User, CreateUser, AuthUser, RegisterNewUser, SearchUser, IdUser, CreateUserPost
 from app.db import user as db_user
 from app.users import auth
 from app.users import dependencies as dep
@@ -122,8 +122,22 @@ def get_user_posts(token: str = Depends(dep.get_token)):
         )
 
 
+@router.post("/post/create")
+def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
+    user_id = dep.get_current_user(token)
+
+    try:
+        db_user.create_user_post(user_id, post.post_content)
+        return {"Post Create:", "ok"}
+    except BaseException:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User Post can Create"
+        )
+
+
 @router.post("/post/delete")
-def get_user_posts(id_post: IdUser, token: str = Depends(dep.get_token)):
+def delete_user_post(id_post: IdUser, token: str = Depends(dep.get_token)):
     user_id = dep.get_current_user(token)
     try:
         db_user.delete_user_post(user_id, id_post.id)
@@ -136,7 +150,7 @@ def get_user_posts(id_post: IdUser, token: str = Depends(dep.get_token)):
 
 
 @router.get("/user/friends")
-def get_user_posts(token: str = Depends(dep.get_token)):
+def get_user_friends(token: str = Depends(dep.get_token)):
     user_id = dep.get_current_user(token)
 
     try:
