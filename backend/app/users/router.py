@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Response, Depends, status
 from fastapi.responses import FileResponse
-from app.users.schema import User, CreateUser, AuthUser, RegisterNewUser, SearchUser, IdUser, CreateUserPost, UpdateUserPost, IdPost
+from app.users.schema import User, CreateUser, AuthUser, RegisterNewUser, SearchUser, IdUser
 from app.db import user as db_user
 from app.users import auth
 from app.users import dependencies as dep
@@ -14,6 +14,7 @@ favicon_path = 'favicon.ico'
 @router.get('/favicon.ico', include_in_schema=False)
 async def favicon():
     return FileResponse(favicon_path)
+
 
 @router.get(
     "/user/get/",
@@ -31,11 +32,11 @@ async def favicon():
         }
     },
 )
-def get_user(id_user: IdUser) -> User:
-    result = db_user.get_user_by_id(id_user.id)
+def get_user(id_user: int) -> User:
+    result = db_user.get_user_by_id(id_user)
 
     if result is None:
-        raise HTTPException(status_code=404, detail=f"User with id: {id_user.id} does not exist")
+        raise HTTPException(status_code=404, detail=f"User with id: {id_user} does not exist")
     return {"id": result[0],
             "first_name": result[1],
             "last_name": result[2],
