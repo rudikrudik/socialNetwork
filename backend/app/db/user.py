@@ -75,9 +75,13 @@ def create_user_post(id_user: int, post_content: str):
                     True, settings.DB_PORT_WRITE)
 
 
-def edit_user_post(id_user: int, post_content: str):
+def update_user_post(id_user: int, post_content: str):
     return db_query(f"UPDATE user_posts SET post_content = '{post_content}' WHERE id = {id_user};",
                     True, settings.DB_PORT_WRITE)
+
+
+def get_user_post_by_id(id_post: int):
+    return db_query(f"SELECT * FROM user_posts WHERE id = {id_post};",True)
 
 
 def get_user_friends(id: int):

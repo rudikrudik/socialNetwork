@@ -28,11 +28,15 @@ class IdUser(BaseModel):
     id: int = Field(examples=[1])
 
 
+class IdPost(BaseModel):
+    id: int = Field(examples=[1])
+
+
 class CreateUserPost(BaseModel):
     post_content: str = Field(examples=["Текст поста"])
 
 
-class EditUserPost(BaseModel):
+class UpdateUserPost(BaseModel):
     id: int = Field(examples=[1])
     post_content: str = Field(examples=["Текст поста"])
 

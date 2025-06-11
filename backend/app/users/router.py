@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Response, Depends, status
 from fastapi.responses import FileResponse
-from app.users.schema import User, CreateUser, AuthUser, RegisterNewUser, SearchUser, IdUser, CreateUserPost, EditUserPost
+from app.users.schema import User, CreateUser, AuthUser, RegisterNewUser, SearchUser, IdUser, CreateUserPost, UpdateUserPost, IdPost
 from app.db import user as db_user
 from app.users import auth
 from app.users import dependencies as dep
@@ -107,71 +107,6 @@ def search_users(search_user: SearchUser):
     else:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail="Error data request")
-
-
-@router.get("/user/posts")
-def get_user_posts(token: str = Depends(dep.get_token)):
-    user_id = dep.get_current_user(token)
-
-    try:
-        return db_user.get_user_posts(user_id)
-    except BaseException:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="User Posts not found"
-        )
-
-
-@router.post("/post/create")
-def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
-    user_id = dep.get_current_user(token)
-
-    try:
-        db_user.create_user_post(user_id, post.post_content)
-        return {"Post Create:", "ok"}
-    except BaseException:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="User Post can Create"
-        )
-
-
-@router.post("/post/edit")
-def edit_user_post(edit_post: EditUserPost, token: str = Depends(dep.get_token)):
-    try:
-        db_user.edit_user_post(edit_post.id, edit_post.post_content)
-        return {"Post Update:", "ok"}
-    except BaseException:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="User Post can Update"
-        )
-
-
-@router.post("/post/delete")
-def delete_user_post(id_post: IdUser, token: str = Depends(dep.get_token)):
-    user_id = dep.get_current_user(token)
-    try:
-        db_user.delete_user_post(user_id, id_post.id)
-        return {"Post Delete:", f"{id_post}"}
-    except BaseException:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="User Post not Delete"
-        )
-
-
-@router.get("/user/friends")
-def get_user_friends(token: str = Depends(dep.get_token)):
-    user_id = dep.get_current_user(token)
-
-    try:
-        return db_user.get_user_friends(user_id)
-    except BaseException:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Friends not found"
-        )
 
 
 @router.get("/check")

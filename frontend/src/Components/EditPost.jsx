@@ -28,17 +28,15 @@ function EditPost(props) {
 
     const {
         trigger
-    } = useSWRMutation([`${global.config.urls.baseUrl}/post/edit`, request_data],
+    } = useSWRMutation([`${global.config.urls.baseUrl}/post/update`, request_data],
         ([url, request_data]) => fetcherPost(url, request_data));
 
 
     const ConfirmEdit = async () => {
-        console.log("Request data", request_data)
         setEditDialogIsOpen(false);
         let result = await trigger()
         if (result) {
-            //window.location.reload();
-            console.log("Request data", request_data)
+            window.location.reload();
         }
         dialogEditRef.current.close();
     };

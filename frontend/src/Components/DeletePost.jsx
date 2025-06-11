@@ -38,10 +38,9 @@ function DeletePost(props) {
         <div>
             <button className="post_menu_button_delete" onClick={openDeleteDialog}>Delete</button>
                 <dialog ref={dialogRef} open={isDeleteDialogOpen}>
-                    <h2>Dialog Title</h2>
-                    <p>This is the content of the dialog.</p>
-                        <button onClick={closeDeleteDialog}>Cancel</button>
-                        <button onClick={ConfirmDelete}>Delete</button>
+                    <h2>Confirm Delete?</h2>
+                        <button className="post_menu_button_edit" onClick={closeDeleteDialog}>Cancel</button>
+                        <button className="post_menu_button_delete" onClick={ConfirmDelete}>Confirm</button>
                 </dialog>
         </div>
     )

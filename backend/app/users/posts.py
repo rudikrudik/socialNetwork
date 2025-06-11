@@ -1,0 +1,70 @@
+from fastapi import APIRouter, HTTPException, Depends, status
+from app.users.schema import IdUser, CreateUserPost, UpdateUserPost, IdPost
+from app.db import user as db_user
+from app.users import dependencies as dep
+
+
+router = APIRouter()
+
+
+@router.get("/user/posts")
+def get_user_posts(token: str = Depends(dep.get_token)):
+    user_id = dep.get_current_user(token)
+
+    try:
+        return db_user.get_user_posts(user_id)
+    except BaseException:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User Posts not found"
+        )
+
+
+@router.post("/post/create")
+def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
+    user_id = dep.get_current_user(token)
+
+    try:
+        db_user.create_user_post(user_id, post.post_content)
+        return {"Post Create:", "ok"}
+    except BaseException:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User Post can Create"
+        )
+
+
+@router.post("/post/update")
+def update_user_post(update_post: UpdateUserPost, token: str = Depends(dep.get_token)):
+    try:
+        db_user.update_user_post(update_post.id, update_post.post_content)
+        return {"Post Update:", "ok"}
+    except BaseException:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User Post can Update"
+        )
+
+
+@router.post("/post/delete")
+def delete_user_post(id_post: IdUser, token: str = Depends(dep.get_token)):
+    user_id = dep.get_current_user(token)
+    try:
+        db_user.delete_user_post(user_id, id_post.id)
+        return {"Post Delete:", f"{id_post}"}
+    except BaseException:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User Post not Delete"
+        )
+
+
+@router.get("/post/get")
+def get_user_post_by_id(id_post: IdPost):
+    try:
+        db_user.get_user_post_by_id(id_post.id)
+    except BaseException:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Post not Found"
+        )
