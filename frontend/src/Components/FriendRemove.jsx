@@ -12,7 +12,8 @@ function FriendRemove(props) {
 
     const addFriend = async () => {
         let result = await trigger()
-        if (result) {
+        console.log("Delete Result", result)
+        if (!result) {
             window.location.reload();
         }
     };

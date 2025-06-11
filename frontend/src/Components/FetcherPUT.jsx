@@ -10,7 +10,6 @@ const fetcherPUT = async (url) => {
             'Content-Type': 'application/json'
         },
     },);
-
     return await res.json();
 };
 

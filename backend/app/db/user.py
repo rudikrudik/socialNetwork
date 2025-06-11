@@ -1,11 +1,10 @@
-
 from app.users.auth import get_hashed_password
 from app.config import settings
 from app.db.db_query import raw_query
 
 
 def get_all_users() -> dict:
-    return raw_query("SELECT first_name, last_name, birthday, gender, hobby, city FROM users;", False)
+    return raw_query("SELECT id, first_name, last_name, birthday, gender, hobby, city FROM users;", False)
 
 
 def get_user_by_id(id: int) -> dict:
