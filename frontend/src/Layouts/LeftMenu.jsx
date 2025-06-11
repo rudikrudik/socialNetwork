@@ -16,8 +16,8 @@ function LeftMenu () {
             <div className="left_menu_block">
                 <Link to="/profile"><p><img width={size} alt="Profile Logo" src={profile}/>
                     Profile</p></Link>
-                <p><img width={size} alt="Profile Logo" src={friends}/>
-                    Friends</p>
+                <p><Link to="/friends"><img width={size} alt="Profile Logo" src={friends}/>
+                    Friends</Link></p>
                 <p><img width={size} alt="Profile Logo" src={message}/>
                     Messages</p>
                 <p><Link to="/posts"><img width={size} alt="Profile Logo" src={posts}/>

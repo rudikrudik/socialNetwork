@@ -3,9 +3,7 @@ import Posts from "./Posts";
 
 function Main () {
     return (
-        <div className="main">
-            <h1><Posts /></h1>
-        </div>
+        <div className="main"></div>
     )
 }
 
