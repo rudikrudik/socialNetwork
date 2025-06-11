@@ -137,10 +137,12 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
 
 
 @router.post("/post/edit")
-def edit_user_post(id_post: IdUser, post: CreateUserPost, token: str = Depends(dep.get_token)):
-    print("Hello from EDIT POST, id POST: ", id_post, " post content: ", post.post_content)
+def edit_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
+    print("Post content: ", post.post_content)
+    post_content = "new post data"
     try:
-        db_user.edit_user_post(id_post.id, post.post_content)
+        #db_user.edit_user_post(id_post.id, post.post_content)
+        db_user.edit_user_post(41, post_content)
         return {"Post Update:", "ok"}
     except BaseException:
         raise HTTPException(
