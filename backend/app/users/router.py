@@ -138,6 +138,7 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
 
 @router.post("/post/edit")
 def edit_user_post(id_post: IdUser, post: CreateUserPost, token: str = Depends(dep.get_token)):
+    print("Hello from EDIT POST, id POST: ", id_post, " post content: ", post.post_content)
     try:
         db_user.edit_user_post(id_post.id, post.post_content)
         return {"Post Update:", "ok"}

@@ -24,7 +24,7 @@ function EditPost(props) {
         dialogEditRef.current.close();
     };
 
-    const request_data = {id: props.id_post, content: getInputContent}
+    const request_data = {id: props.id_post, post_content: getInputContent}
 
     const {
         trigger
@@ -35,10 +35,11 @@ function EditPost(props) {
     const ConfirmEdit = async () => {
         console.log("Request data", request_data)
         setEditDialogIsOpen(false);
-        //let result = await trigger()
-        //if (result) {
-        //    window.location.reload();
-        //}
+        let result = await trigger()
+        if (result) {
+            //window.location.reload();
+            console.log("Request data", request_data)
+        }
         dialogEditRef.current.close();
     };
 
