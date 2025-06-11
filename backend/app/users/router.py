@@ -136,6 +136,18 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
         )
 
 
+@router.post("/post/edit")
+def edit_user_post(id_post: IdUser, post: CreateUserPost, token: str = Depends(dep.get_token)):
+    try:
+        db_user.edit_user_post(id_post.id, post.post_content)
+        return {"Post Update:", "ok"}
+    except BaseException:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User Post can Update"
+        )
+
+
 @router.post("/post/delete")
 def delete_user_post(id_post: IdUser, token: str = Depends(dep.get_token)):
     user_id = dep.get_current_user(token)

@@ -7,11 +7,17 @@ import Post from "./Post";
 function Posts() {
     const {
         data,
-        isLoading
+        isLoading,
+        error
     } = useSWR([`${global.config.urls.baseUrl}/user/posts`],
         ([url]) => fetcherGet(url));
 
     if (isLoading) return <div>is loading</div>;
+    if (error) {
+        console.log(data);
+        return <div>is error</div>;
+    }
+
 
     return (
         <div className="main">

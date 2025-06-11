@@ -11,6 +11,7 @@
     "dateformat": "^5.0.3",
     "js-cookie": "^3.0.5",
     "react": "^19.1.0",
+    "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.1",
     "react-scripts": "5.0.1",
