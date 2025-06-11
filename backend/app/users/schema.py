@@ -32,6 +32,11 @@ class CreateUserPost(BaseModel):
     post_content: str = Field(examples=["Текст поста"])
 
 
+class EditUserPost(BaseModel):
+    id: int = Field(examples=[1])
+    post_content: str = Field(examples=["Текст поста"])
+
+
 class SearchUser(BaseModel):
     first_name: str = Field(examples=["Имя"])
     last_name: str = Field(examples=["Фамилия"])

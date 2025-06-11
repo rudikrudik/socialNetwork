@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Response, Depends, status
 from fastapi.responses import FileResponse
-from app.users.schema import User, CreateUser, AuthUser, RegisterNewUser, SearchUser, IdUser, CreateUserPost
+from app.users.schema import User, CreateUser, AuthUser, RegisterNewUser, SearchUser, IdUser, CreateUserPost, EditUserPost
 from app.db import user as db_user
 from app.users import auth
 from app.users import dependencies as dep
@@ -137,12 +137,9 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
 
 
 @router.post("/post/edit")
-def edit_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
-    print("Post content: ", post.post_content)
-    post_content = "new post data"
+def edit_user_post(edit_post: EditUserPost, token: str = Depends(dep.get_token)):
     try:
-        #db_user.edit_user_post(id_post.id, post.post_content)
-        db_user.edit_user_post(41, post_content)
+        db_user.edit_user_post(edit_post.id, edit_post.post_content)
         return {"Post Update:", "ok"}
     except BaseException:
         raise HTTPException(
