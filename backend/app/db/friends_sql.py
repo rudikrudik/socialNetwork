@@ -7,8 +7,9 @@ def get_user_friends(id: int):
 
 
 def add_user_friend(user_id: int, friend_id: int):
-    return raw_query(f"INSERT INTO user_friends (user_id, friend_id) VALUES ({user_id}, {friend_id}) "
-                     f"RETURNING friend_id;",
+    return raw_query(f"INSERT INTO user_friends(user_id, friend_id) SELECT {user_id}, {friend_id} WHERE NOT EXISTS"
+                     f"(SELECT friend_id FROM user_friends WHERE friend_id = {friend_id})"
+                     f"RETURNING friend_id",
                      True, settings.DB_PORT_WRITE)
 
 

@@ -2,26 +2,34 @@ import React from "react";
 import '../config';
 import useSWR from "swr";
 import fetcherGet from "../Components/FetcherGET";
-import Post from "./Post";
+import profile_img from "../images/profile/6.jpg"
+import FriendAdd from "../Components/FriendAdd";
+import FriendRemove from "../Components/FriendRemove";
 
-function Friend() {
+
+function Friend(props) {
     const {
         data,
         isLoading,
         error
-    } = useSWR([`${global.config.urls.baseUrl}/friends`],
+    } = useSWR([`${global.config.urls.baseUrl}/user/get/?id_user=${props.data}`],
         ([url]) => fetcherGet(url));
 
     if (isLoading) return <div>is loading</div>;
-    if (error) {
-        console.log(data);
-        return <div>is error</div>;
-    }
-
+    if (error) return <div>is error</div>;
 
     return (
-        <div className="main">
-            <p>Friend</p>
+        <div className="friend">
+        <div className="friend_wrapper">
+            <div className="friend_author">
+                <img alt="avatar" src={profile_img} />
+                <p>{data.first_name} {data.last_name}</p>
+            </div>
+            <div className="friend_edit_menu">
+                <FriendAdd friend_id={props.data[0]}/>
+                <FriendRemove friend_id={props.data[0]}/>
+            </div>
+        </div>
         </div>
     )
 }
