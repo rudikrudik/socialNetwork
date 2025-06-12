@@ -10,15 +10,13 @@ function Friends() {
         data,
         isLoading,
         error
-    } = useSWR([`${global.config.urls.baseUrl}/user/all`],
+    } = useSWR([`${global.config.urls.baseUrl}/friends`],
         ([url]) => fetcherGet(url));
 
     if (isLoading) return <div>is loading</div>;
     if (error) {
         return <div>is error</div>;
     }
-
-    console.log("All friends", data)
 
     return (
         <div className="main">

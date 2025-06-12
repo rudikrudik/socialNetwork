@@ -12,7 +12,7 @@ function Friend(props) {
         data,
         isLoading,
         error
-    } = useSWR([`${global.config.urls.baseUrl}/user/get/?id_user=${props.data}`],
+    } = useSWR([`${global.config.urls.baseUrl}/user/get/?id_user=${props.data[0]}`],
         ([url]) => fetcherGet(url));
 
     if (isLoading) return <div>is loading</div>;

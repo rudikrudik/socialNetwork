@@ -29,13 +29,12 @@ function Login () {
             let result = await trigger({login: loginInput, password: passwordInput})
 
             if (result["token"]) {
-                Cookies.set('user_access_token', result["token"],
-                    {
-                        secure: true,
-                        sameSite: "Strict",
-                        expires: 7
+                Cookies.set({
+                    secure: false, // required for cookies to work on HTTPS
+                    httpOnly: false,
+                    sameSite: 'none'
                     });
-                navigate('/');
+                //navigate('/');
                     }
             }
         catch (e) {
