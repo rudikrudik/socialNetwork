@@ -6,7 +6,7 @@ const fetcherGet = async (url) => {
         method: 'GET',
         credentials: 'include',
         headers: {
-            'Access-Control-Allow-Origin': 'http://192.168.0.3:3000/',
+            'Access-Control-Allow-Origin': 'http://api.vsadmin.ru:3000/',
             'Content-Type': 'application/json'
         },
     },);
