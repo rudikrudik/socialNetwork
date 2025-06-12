@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.users import router, posts_router, friends_router
@@ -19,10 +20,13 @@ app.include_router(router.router)
 app.include_router(posts_router.router)
 app.include_router(friends_router.router)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
+middleware = [
+    Middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+               )
+]
