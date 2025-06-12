@@ -8,9 +8,10 @@ app = FastAPI(title=settings.PROJECT_NAME,
 
 origins = [
     "http://api.vsadmin.ru",
-    "http://192.168.0.3:3000",
+    "http://192.168.0.3:3000/",
     "http://localhost:3000",
 ]
+
 
 app.add_middleware(
     CORSMiddleware,

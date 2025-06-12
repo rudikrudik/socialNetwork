@@ -6,7 +6,7 @@ const fetcherGet = async (url) => {
         method: 'GET',
         credentials: 'include',
         headers: {
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': 'http://192.168.0.3:3000',
             'Content-Type': 'application/json'
         },
     },);
