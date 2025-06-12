@@ -37,7 +37,7 @@ function Login () {
                         secure: false,
                         sameSite: 'lax'
                     })
-                Cookies.set("user_id", result["id"])
+                Cookies.set("user_id", result["user_id"])
 
                 navigate('/');
                     }

@@ -4,7 +4,7 @@ import useSWR from "swr";
 import fetcherGet from "../Components/FetcherGET";
 import Post from "./Post";
 
-function Posts() {
+function Posts(props) {
     const {
         data,
         isLoading,
@@ -19,7 +19,7 @@ function Posts() {
         <div className="main">
             <div>
                 {data.map((item) => {
-                    return <Post key={item[0]} data={item}/>
+                    return <Post key={item[0]} data={item} user_prop={props.user}/>
                 })}
             </div>
         </div>

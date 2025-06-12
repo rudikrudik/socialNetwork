@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import Cookies from "js-cookie";
 
 
-function Header () {
+function Header (props) {
     if (Cookies.get('token')) {
         return (
             <div className="header">

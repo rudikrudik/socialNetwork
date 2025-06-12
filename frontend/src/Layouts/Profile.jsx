@@ -4,28 +4,31 @@ import CreatePost from "./CreatePost";
 import Posts from "./Posts";
 import useSWR from "swr";
 import fetcherGet from "../Components/FetcherGET";
+import Cookies from "js-cookie";
 
 
 function Profile () {
+    const user_id = Cookies.get("user_id");
+
     const {
         data,
         isLoading,
         error
-    } = useSWR([`${global.config.urls.baseUrl}/user/posts/`],
+    } = useSWR([`${global.config.urls.baseUrl}/user/get/?id_user=${user_id}`],
         ([url]) => fetcherGet(url));
 
+    if (isLoading) return <div>is Loading</div>;
+    if (error) return <div>Error</div>;
 
     return (
         <div className="main">
             <div className="profile" style={{backgroundImage: `url(${profile_img})`, backgroundSize: 'cover'}}>
                 <div className="profile_data">
-                    <p>Image</p>
-                    <p>Image</p>
-                    <p>Image</p>
+                    <p>{data.first_name} {data.last_name}</p>
                 </div>
             </div>
             <CreatePost />
-            <Posts />
+            <Posts user={data}/>
         </div>
     )
 }

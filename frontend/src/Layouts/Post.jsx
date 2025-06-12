@@ -15,14 +15,12 @@ function Post(props) {
         minute: '2-digit',
     }).format(date);
 
-    console.log("From Post", props.data[1])
-
     return (
         <div className="post">
             <div className="post_author_menu_wrapper">
                 <div className="post_author">
                     <img alt="profile logo" src={profile_img}/>
-                    <p>Виталий Солохов</p>
+                    <p>{props.user_prop.first_name} {props.user_prop.last_name}</p>
                 </div>
                 <div className="post_post_date">
                     <p>{formattedDate}</p>
