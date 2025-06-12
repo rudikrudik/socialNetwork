@@ -9,7 +9,7 @@ function Posts() {
         data,
         isLoading,
         error
-    } = useSWR([`${global.config.urls.baseUrl}/user/posts`],
+    } = useSWR([`${global.config.urls.baseUrl}/user/posts/`],
         ([url]) => fetcherGet(url));
 
     if (isLoading) return <div>is loading</div>;

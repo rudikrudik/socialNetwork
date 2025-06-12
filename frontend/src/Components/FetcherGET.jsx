@@ -2,11 +2,11 @@ import Cookies from "js-cookie";
 
 const fetcherGet = async (url) => {
     const res = await fetch(url, {
-        mode: "cors",
+        mode: 'cors',
         method: 'GET',
         credentials: 'include',
         headers: {
-            'Access-Control-Allow-Origin': 'http://api.vsadmin.ru/',
+            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json'
         },
     },);
