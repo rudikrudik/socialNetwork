@@ -9,7 +9,7 @@ app = FastAPI(title=settings.PROJECT_NAME,
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://192.168.0.3:3000", "http://api.vsadmin.ru", "http://192.168.0.202:8000"],
+    allow_origins=["http://192.168.0.3:3000/", "http://api.vsadmin.ru/", "http://192.168.0.202:8000/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

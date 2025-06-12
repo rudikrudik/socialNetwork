@@ -2,14 +2,14 @@ import Cookies from "js-cookie";
 
 const fetcherGet = async (url) => {
     const res = await fetch(url, {
-        mode: 'cors',
+        mode: 'same-origin',
         method: 'GET',
-        credentials: 'include',
+        credentials: 'same-origin',
         headers: {
             'Access-Control-Allow-Origin': 'http://localhost',
-            'Content-Type': 'application/json'
-        },
-    },);
+            'Content-Type': 'application/json',
+            }
+        });
 
     return await res.json();
 };
