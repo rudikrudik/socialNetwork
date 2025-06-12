@@ -4,11 +4,11 @@ const fetcherGet = async (url) => {
     const res = await fetch(url, {
         mode: "cors",
         method: 'GET',
+        credentials: 'include',
         headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Origin': 'http://api.vsadmin.ru/',
             'Content-Type': 'application/json'
         },
-        Cookies: `user_access_token=${Cookies.get('token')}`,
     },);
 
     return await res.json();
