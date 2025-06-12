@@ -37,8 +37,9 @@ function Login () {
                         secure: false,
                         sameSite: 'lax'
                     })
+                Cookies.set("user_id", result["id"])
 
-                navigate('/posts');
+                navigate('/');
                     }
             }
         catch (e) {

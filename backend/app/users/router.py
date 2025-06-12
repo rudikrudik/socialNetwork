@@ -82,7 +82,7 @@ def login_user(response: Response, login_item: AuthUser):
 
     access_token = auth.create_access_token({"sub": str(result[0])})
     #response.set_cookie(key="user_access_token", value=access_token, httponly=True)
-    return {"token": access_token}
+    return {"token": access_token, "user_id": result[0]}
 
 
 @router.post("/logout")

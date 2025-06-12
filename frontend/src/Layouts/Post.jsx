@@ -4,7 +4,7 @@ import EditPost from "../Components/EditPost";
 import DeletePost from "../Components/DeletePost";
 
 
-function Posts(props) {
+function Post(props) {
     const date = new Date(Date.parse(props.data[2].toString()));
     const formattedDate = new Intl.DateTimeFormat('en-US', {
         hour12: false,
@@ -14,6 +14,8 @@ function Posts(props) {
         hour: '2-digit',
         minute: '2-digit',
     }).format(date);
+
+    console.log("From Post", props.data[1])
 
     return (
         <div className="post">
@@ -39,4 +41,4 @@ function Posts(props) {
     )
 }
 
-export default Posts
+export default Post

@@ -6,8 +6,8 @@ const fetcherPUT = async (url) => {
         method: 'PUT',
         headers: {
             'Access-Control-Allow-Origin': 'http://localhost:3000',
-            Cookies: `user_access_token=${Cookies.get('user_access_token')}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Cookies: `user_access_token=${Cookies.get('token')}`
         },
     },);
     return await res.json();

@@ -20,7 +20,7 @@ function CreatePost () {
         let result = await trigger(getInputContent)
         if (result[1] === "ok") {
             console.log("Post create:")
-            navigate('/posts');
+            window.location.reload();
         }
         else {
             console.log(result)

@@ -1,9 +1,20 @@
 import React from "react";
 import profile_img from "../images/profile/6.jpg"
 import CreatePost from "./CreatePost";
+import Posts from "./Posts";
+import useSWR from "swr";
+import fetcherGet from "../Components/FetcherGET";
 
 
 function Profile () {
+    const {
+        data,
+        isLoading,
+        error
+    } = useSWR([`${global.config.urls.baseUrl}/user/posts/`],
+        ([url]) => fetcherGet(url));
+
+
     return (
         <div className="main">
             <div className="profile" style={{backgroundImage: `url(${profile_img})`, backgroundSize: 'cover'}}>
@@ -14,6 +25,7 @@ function Profile () {
                 </div>
             </div>
             <CreatePost />
+            <Posts />
         </div>
     )
 }

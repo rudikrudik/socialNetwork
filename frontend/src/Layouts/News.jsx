@@ -4,7 +4,7 @@ import useSWR from "swr";
 import fetcherGet from "../Components/FetcherGET";
 import Post from "./Post";
 
-function Posts() {
+function News() {
     const {
         data,
         isLoading,
@@ -14,6 +14,7 @@ function Posts() {
 
     if (isLoading) return <div>is loading</div>;
     if (error) return <div>is error</div>;
+
 
     return (
         <div className="main">
@@ -26,4 +27,4 @@ function Posts() {
     )
 }
 
-export default Posts
+export default News;

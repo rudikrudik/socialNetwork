@@ -21,7 +21,7 @@ function LeftMenu () {
                 <p><img width={size} alt="Profile Logo" src={message}/>
                     Messages</p>
                 <p><Link to="/posts"><img width={size} alt="Profile Logo" src={posts}/>
-                    Posts</Link></p>
+                    News</Link></p>
                 <p><img width={size} alt="Profile Logo" src={music}/>
                     Music</p>
                 <p><img width={size} alt="Profile Logo" src={video}/>

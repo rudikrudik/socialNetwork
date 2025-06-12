@@ -8,6 +8,7 @@ const fetcherGet = async (url) => {
         headers: {
             'Access-Control-Allow-Origin': 'http://192.168.0.3:3000',
             'Content-Type': 'application/json',
+            Cookies: `user_access_token=${Cookies.get('token')}`
             }
         });
 

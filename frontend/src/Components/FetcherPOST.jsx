@@ -6,8 +6,8 @@ const fetcherPost = async (url, body) => {
         method: 'POST',
         headers: {
             'Access-Control-Allow-Origin': 'http://localhost:3000',
-            Cookies: `user_access_token=${Cookies.get('user_access_token')}`,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Cookies: `user_access_token=${Cookies.get('token')}`
         },
         body: JSON.stringify(body)
     },);
