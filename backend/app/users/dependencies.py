@@ -13,6 +13,8 @@ def get_token(request: Request) -> str:
     for i in request.headers:
         print("head: ", i)
 
+    print("User access: ", request.cookies.get("user_access_token"))
+
     try:
         token = request.headers.get("cookies").split("=")[1]
     except AttributeError:
