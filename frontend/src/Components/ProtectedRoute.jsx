@@ -3,8 +3,7 @@ import Cookies from "js-cookie";
 
 
 const ProtectedRoute = ({ children }) => {
-    const token = Cookies.get('user_access_token');
-    console.log(Cookies)
+    const token = Cookies.get('token');
     const location = useLocation();
 
     if (!token) {

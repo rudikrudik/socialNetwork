@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 
 
 function Header () {
-    if (Cookies.get('user_access_token')) {
+    if (Cookies.get('token')) {
         return (
             <div className="header">
                 <div className="header_wrapper">

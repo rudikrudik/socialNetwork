@@ -13,10 +13,7 @@ function Posts() {
         ([url]) => fetcherGet(url));
 
     if (isLoading) return <div>is loading</div>;
-    if (error) {
-        console.log(data);
-        return <div>is error</div>;
-    }
+    if (error) return <div>is error</div>;
 
 
     return (

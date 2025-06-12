@@ -7,6 +7,12 @@ from app.db import user as db_user
 
 #  Get JWT token
 def get_token(request: Request) -> str:
+    for i in request.cookies:
+        print("cook: ", i)
+
+    for i in request.headers:
+        print("head: ", i)
+
     try:
         token = request.headers.get("cookies").split("=")[1]
     except AttributeError:
