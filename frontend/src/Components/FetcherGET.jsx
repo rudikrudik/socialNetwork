@@ -6,14 +6,13 @@ const fetcherGet = async (url) => {
         method: 'GET',
         credentials: 'include',
         headers: {
-            'Access-Control-Allow-Origin': 'http://api.vsadmin.ru:3000/',
+            'Access-Control-Allow-Origin': 'http://localhost:3000/',
             'Content-Type': 'application/json'
         },
     },);
 
     return await res.json();
 };
-
 export default fetcherGet;
 
 //            Cookies: `user_access_token=${Cookies.get('token')}`,

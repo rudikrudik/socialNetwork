@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.users import router, posts_router, friends_router
 import uvicorn
