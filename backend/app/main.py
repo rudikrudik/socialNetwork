@@ -3,8 +3,6 @@ from starlette.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.users import router, posts_router, friends_router
 import uvicorn
-app = FastAPI(title=settings.PROJECT_NAME,
-              version=settings.PROJECT_VERSION)
 
 origins = [
     "http://api.vsadmin.ru/",
@@ -13,6 +11,14 @@ origins = [
 ]
 
 
+app = FastAPI(title=settings.PROJECT_NAME,
+              version=settings.PROJECT_VERSION)
+
+# Include all route from apis.v1
+app.include_router(router.router)
+app.include_router(posts_router.router)
+app.include_router(friends_router.router)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -20,9 +26,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-# Include all route from apis.v1
-app.include_router(router.router)
-app.include_router(posts_router.router)
-app.include_router(friends_router.router)
