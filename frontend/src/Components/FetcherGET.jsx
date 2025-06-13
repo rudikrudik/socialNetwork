@@ -2,6 +2,7 @@ import Cookies from "js-cookie";
 
 const fetcherGet = async (url) => {
     const res = await fetch(url, {
+        mode: 'cors',
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -14,3 +15,4 @@ const fetcherGet = async (url) => {
 export default fetcherGet;
 
 //            Cookies: `user_access_token=${Cookies.get('token')}`,
+//              'Access-Control-Allow-Origin': 'http://api.ru',

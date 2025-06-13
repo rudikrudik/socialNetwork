@@ -5,7 +5,6 @@ async function updatePost(url, { arg }: { arg: string }) {
         mode: "cors",
         method: 'POST',
         headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
             'Content-Type': 'application/json',
             Cookies: `user_access_token=${Cookies.get('token')}`
         },

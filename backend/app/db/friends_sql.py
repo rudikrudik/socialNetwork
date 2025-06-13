@@ -3,7 +3,7 @@ from app.db.db_query import raw_query
 
 
 def get_user_friends(id: int):
-    return raw_query(f"SELECT friend_id FROM user_friends WHERE user_id = '{id}'", False)
+    return raw_query(f"SELECT * FROM user_friends WHERE user_id = '{id}'", False)
 
 
 def add_user_friend(user_id: int, friend_id: int):
