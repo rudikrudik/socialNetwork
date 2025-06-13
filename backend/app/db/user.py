@@ -22,9 +22,9 @@ def find_user_by_login(login: str) -> dict:
 
 
 def search_users(first_name: str, last_name: str) -> dict:
-    return raw_query(f"SELECT id, first_name, last_name, birthday, gender, hobby, city F"
-                    f"ROM users WHERE LOWER(first_name)::text LIKE '{first_name.lower()}%'"
-                    f" AND LOWER(last_name)::text LIKE '{last_name.lower()}%';", False)
+    return raw_query(f"SELECT id, first_name, last_name, birthday, gender, hobby, city "
+                     f"FROM users WHERE LOWER(first_name)::text LIKE '{first_name.lower()}%'"
+                     f" AND LOWER(last_name)::text LIKE '{last_name.lower()}%';", False)
 
 
 def auth_user(login: str) -> dict:

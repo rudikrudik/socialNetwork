@@ -3,7 +3,6 @@ import '../config';
 import useSWR from "swr";
 import fetcherGet from "../Components/FetcherGET";
 import Friend from "./Friend";
-import SearchFriends from "../Components/SearchFriends";
 
 function Friends() {
     const {
@@ -20,9 +19,8 @@ function Friends() {
 
     return (
         <div className="main">
-            <SearchFriends />
             {data.map((item) => {
-                    return <Friend key={item[0]} data={item}/>
+                    return <Friend key={item[1]} data={item}/>
                 })}
         </div>
     )

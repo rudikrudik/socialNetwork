@@ -13,6 +13,3 @@ const fetcherGet = async (url) => {
     return await res.json();
 };
 export default fetcherGet;
-
-//            Cookies: `user_access_token=${Cookies.get('token')}`,
-//              'Access-Control-Allow-Origin': 'http://api.ru',

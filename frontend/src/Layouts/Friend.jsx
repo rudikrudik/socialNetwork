@@ -12,7 +12,7 @@ function Friend(props) {
         data,
         isLoading,
         error
-    } = useSWR([`${global.config.urls.baseUrl}/user/get/?id_user=${props.data[0]}`],
+    } = useSWR([`${global.config.urls.baseUrl}/user/get/?id_user=${props.data[1]}`],
         ([url]) => fetcherGet(url));
 
     if (isLoading) return <div>is loading</div>;
@@ -26,8 +26,8 @@ function Friend(props) {
                 <p>{data.first_name} {data.last_name}</p>
             </div>
             <div className="friend_edit_menu">
-                <FriendAdd friend_id={props.data[0]}/>
-                <FriendRemove friend_id={props.data[0]}/>
+                { props.data[0] ? "" : <FriendAdd friend_id={props.data[1]}/>}
+                <FriendRemove friend_id={props.data[1]}/>
             </div>
         </div>
         </div>
