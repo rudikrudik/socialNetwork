@@ -3,8 +3,8 @@ import Cookies from "js-cookie";
 const fetcherGet = async (url) => {
     const res = await fetch(url, {
         method: 'GET',
-        credentials: 'include',
         headers: {
+            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
             Cookies: `user_access_token=${Cookies.get('token')}`,
             }

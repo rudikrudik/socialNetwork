@@ -8,8 +8,8 @@ app = FastAPI(title=settings.PROJECT_NAME,
 
 
 origins = [
-    "http://192.168.0.3",
-    "http://127.0.0.1",
+    "http://192.168.0.3:3000",
+    "http://127.0.0.1:3000",
 ]
 
 
