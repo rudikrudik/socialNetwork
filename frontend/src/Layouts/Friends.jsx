@@ -21,9 +21,9 @@ function Friends() {
     return (
         <div className="main">
             <SearchFriends />
-            {/*{data.map((item) => {
+            {data.map((item) => {
                     return <Friend key={item[0]} data={item}/>
-                })*/}
+                })}
         </div>
     )
 }
