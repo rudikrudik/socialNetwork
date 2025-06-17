@@ -30,6 +30,7 @@ html, body {
   display: flex;
   flex-flow: row nowrap;
   width: 100vw;
+  height: 100%;
 }
 
 .header_menu {
@@ -411,4 +412,14 @@ input[type=search]
 
 .friend_buttons {
 
+}
+
+.header_menu_button_signin_signout_register {
+  color: honeydew;
+  background: #211d1e;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
+  margin-right: 10px;
+  height: 100%;
 }
