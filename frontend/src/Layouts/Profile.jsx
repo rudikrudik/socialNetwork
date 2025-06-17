@@ -1,6 +1,6 @@
 import React from "react";
 import profile_img from "../images/profile/6.jpg"
-import CreatePost from "./CreatePost";
+import CreatePost from "./NewPostMenu";
 import Posts from "./Posts";
 import useSWR from "swr";
 import fetcherGet from "../Components/FetcherGET";

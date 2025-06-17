@@ -71,9 +71,10 @@ def get_user_post_by_id(id_post: int):
 
 
 @router.get("/post/feed")
-def get_post_limit_and_offset(post_limit: int, offset: int):
+def get_post_limit_and_offset(post_limit: int, offset: int, token: str = Depends(dep.get_token)):
+    user_id = dep.get_current_user(token)
     try:
-        return db_posts.get_post_limit_and_offset(post_limit, offset)
+        return db_posts.get_post_limit_and_offset(user_id, post_limit, offset)
     except BaseException:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

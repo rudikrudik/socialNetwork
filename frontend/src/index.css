@@ -250,6 +250,26 @@ html, body {
 }
 
 
+.create_new_post_button {
+  background-image: url("images/post-plus-50.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #211d1e;
+  background-size: 5%;
+  cursor: pointer;
+  font-size: 14px;
+  outline: 0;
+  border: none;
+  border-radius: 10px;
+  height: 46px;
+  line-height: 36px;
+  padding: 0 16px;
+  vertical-align: middle;
+  margin-right: 10px;
+  width: 100%;
+}
+
+
 .edit_post_dialog_wrapper{
   width: 600px;
 }
