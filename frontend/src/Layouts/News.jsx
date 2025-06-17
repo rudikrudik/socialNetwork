@@ -15,6 +15,8 @@ function News() {
     if (isLoading) return <div>is loading</div>;
     if (error) return <div>is error</div>;
 
+    console.log("Data from NEWS", data)
+
     return (
         <div className="main">
             <div>

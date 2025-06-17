@@ -29,4 +29,4 @@ def get_user_post_by_id(id_post: int):
 def get_post_limit_and_offset(user_id: int, posts_limit: int, offset: int):
     return raw_query(f"SELECT * FROM user_posts WHERE user_id IN "
                      f"(SELECT friend_id FROM user_friends WHERE user_id = {user_id}) "
-                     f"LIMIT {posts_limit} OFFSET {offset}", True)
+                     f"LIMIT {posts_limit} OFFSET {offset}", False)
