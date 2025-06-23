@@ -25,8 +25,7 @@ def update_user_post(id_user: int, post_content: str):
 
 def get_user_post_by_id(id_post: int) -> tuple:
     try:
-        result_from_redis = redis_db_proxy_get_query_key(id_post)
-        print(result_from_redis)
+        redis_db_proxy_get_query_key(id_post)
     except BaseException as e:
         print(f"Error {e}")
 
