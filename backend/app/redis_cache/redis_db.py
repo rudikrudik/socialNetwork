@@ -26,3 +26,9 @@ def redis_db_proxy_set_query_key(id_post: int, result_from_sql: tuple) -> None:
     r = redis_connect()
     sql_str = json.dumps(result_from_sql, indent=4, sort_keys=True, default=str, ensure_ascii=False)
     r.hset(str(id_post), str(id_post), sql_str)
+
+
+def redis_db_proxy_delete_key(id_post: int) -> None:
+    r = redis_connect()
+    if r.hexists(str(id_post), str(id_post)):
+        r.hdel(str(id_post), str(id_post))

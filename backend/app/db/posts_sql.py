@@ -1,6 +1,6 @@
 from app.config import settings
 from app.db.db_query import raw_query
-from app.redis_cache.redis_db import redis_db_proxy_get_query_key, redis_db_proxy_set_query_key
+from app.redis_cache.redis_db import redis_db_proxy_get_query_key, redis_db_proxy_set_query_key, redis_db_proxy_delete_key
 
 
 def get_user_posts(id: int):
@@ -8,6 +8,8 @@ def get_user_posts(id: int):
 
 
 def delete_user_post(id_user: int, id_post: int):
+    redis_db_proxy_delete_key(id_user)
+
     return raw_query(f"DELETE FROM user_posts WHERE user_id = '{id_user}' AND id = '{id_post}' ",
                      True, settings.DB_PORT_WRITE)
 
@@ -19,6 +21,8 @@ def create_user_post(id_user: int, post_content: str):
 
 
 def update_user_post(id_user: int, post_content: str):
+    redis_db_proxy_delete_key(id_user)
+
     return raw_query(f"UPDATE user_posts SET post_content = '{post_content}' WHERE id = {id_user}",
                      True, settings.DB_PORT_WRITE)
 
