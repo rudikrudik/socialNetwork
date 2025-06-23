@@ -33,7 +33,8 @@ def get_user_post_by_id(id_post: int) -> tuple:
         result_from_sql = raw_query(f"SELECT * FROM user_posts WHERE id = {id_post}", True)
         print("Result from sql: ", result_from_sql)
         redis_db_proxy_set_query_key(id_post, result_from_sql)
-        return result_from_sql
+
+    return result_from_sql
 
 
 def get_post_limit_and_offset(user_id: int, posts_limit: int, offset: int):
