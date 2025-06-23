@@ -46,7 +46,7 @@ function Login() {
                 {
                     expires: 7,
                     path: '/',
-                    domain: '192.168.0.3',
+                    domain: 'social.vsadmin.ru',
                     secure: false,
                     sameSite: 'none'
                 })
