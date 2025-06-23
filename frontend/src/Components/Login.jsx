@@ -48,7 +48,7 @@ function Login() {
                     path: '/',
                     domain: '192.168.0.3',
                     secure: false,
-                    sameSite: 'lax'
+                    sameSite: 'none'
                 })
             Cookies.set("user_id", result["user_id"])
             navigate('/profile');
