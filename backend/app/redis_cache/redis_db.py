@@ -17,15 +17,12 @@ def redis_connect():
     return r_connect
 
 
-def redis_db_proxy_get_query_key(id_post: int) -> None:
+def redis_db_proxy_get_query_key(id_post: int) -> tuple | None:
     r = redis_connect()
-    print("Ping from redis db_proxy: ", r.ping())
-    print("Redis post 42: ", r.hget("42", "42"))
+    return r.hget(str(id_post), str(id_post)) if r.hexists(str(id_post), str(id_post)) else None
 
 
-def redis_db_proxy_set_query_key(id_post, result_from_sql: tuple) -> None:
+def redis_db_proxy_set_query_key(id_post: int, result_from_sql: tuple) -> None:
     r = redis_connect()
-    dict_str = json.dumps(result_from_sql, indent=4, sort_keys=True, default=str)
-    r.hset(str(id_post), str(id_post), dict_str)
-    print(r.ping())
-    print("From redis", r.get(str(id_post)))
+    sql_str = json.dumps(result_from_sql, indent=4, sort_keys=True, default=str)
+    r.hset(str(id_post), str(id_post), sql_str)

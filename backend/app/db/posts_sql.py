@@ -24,13 +24,13 @@ def update_user_post(id_user: int, post_content: str):
 
 
 def get_user_post_by_id(id_post: int) -> tuple:
-    try:
-        redis_db_proxy_get_query_key(id_post)
-    except BaseException as e:
-        print(f"Error {e}")
-
-    result_from_sql = raw_query(f"SELECT * FROM user_posts WHERE id = {id_post}", True)
-    return result_from_sql
+    result_from_redis = redis_db_proxy_get_query_key(id_post)
+    if result_from_redis:
+        return result_from_redis
+    else:
+        result_from_sql = raw_query(f"SELECT * FROM user_posts WHERE id = {id_post}", True)
+        redis_db_proxy_set_query_key(id_post, result_from_redis)
+        return result_from_sql
 
 
 def get_post_limit_and_offset(user_id: int, posts_limit: int, offset: int):
