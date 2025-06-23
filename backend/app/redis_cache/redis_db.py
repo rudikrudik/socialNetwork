@@ -3,7 +3,7 @@ import json
 from app.config import settings
 
 
-def redis_connect() -> redis:
+def redis_connect():
     r_connect = redis.Redis(host=settings.REDIS_CACHE_HOST,
                             port=settings.REDIS_CACHE_PORT,
                             db=settings.REDIS_DB,
@@ -19,9 +19,8 @@ def redis_connect() -> redis:
 
 def redis_db_proxy_get_query_key(id_post: int) -> None:
     r = redis_connect()
-    from_redis = r.get("42")
-    print("Redis ping from get query: ", r.ping())
-    print("Redis post 42: ", from_redis)
+    print("Ping from redis db_proxy: ", r.ping())
+    print("Redis post 42: ", r.get("42"))
 
 
 def redis_db_proxy_set_query_key(id_post, result_from_sql: tuple) -> None:
