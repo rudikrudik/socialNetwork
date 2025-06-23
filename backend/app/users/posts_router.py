@@ -62,6 +62,7 @@ def delete_user_post(id_post: IdUser, token: str = Depends(dep.get_token)):
 @router.get("/post/get")
 def get_user_post_by_id(id_post: int):
     try:
+        print("from /post/get: ", db_posts.get_user_post_by_id(id_post))
         return db_posts.get_user_post_by_id(id_post)
     except BaseException:
         raise HTTPException(
