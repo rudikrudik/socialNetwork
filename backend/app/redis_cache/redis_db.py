@@ -19,7 +19,7 @@ def redis_connect() -> redis:
 
 def redis_db_proxy_get_query_key(id_post: int) -> tuple:
     r = redis_connect()
-    print("Redis ping: ", r.ping())
+    print("Redis ping from get query: ", r.ping())
     print("Redis post 42: ", r.get(str(id_post)))
     return r.get(str(id_post)) if r.exists(str(id_post)) else None
 
