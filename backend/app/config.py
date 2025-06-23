@@ -12,7 +12,12 @@ class Settings(BaseSettings):
     DB_USER: str
     DB_PASSWORD: str
     SECRET_KEY: str
-    ALGORITHM : str
+    ALGORITHM: str
+    REDIS_CACHE_HOST: str
+    REDIS_CACHE_LOGIN: str
+    REDIS_CACHE_PORT: int
+    REDIS_PASSWORD: str
+    REDIS_DB: int
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")

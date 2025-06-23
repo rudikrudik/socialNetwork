@@ -1,5 +1,5 @@
-from app.db.sql import Database as data_base
-from app.config import settings
+from backend.app.db.sql import Database as data_base
+from backend.app.config import settings
 
 
 def raw_query(query: str, one_string_result=True, port=settings.DB_PORT_READ) -> dict:
@@ -19,3 +19,4 @@ def raw_query(query: str, one_string_result=True, port=settings.DB_PORT_READ) ->
     else:
         return db.query_one(query) if one_string_result else db.query(query)
     db.close()
+
