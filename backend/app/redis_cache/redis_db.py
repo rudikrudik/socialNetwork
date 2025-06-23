@@ -20,7 +20,7 @@ def redis_connect():
 def redis_db_proxy_get_query_key(id_post: int) -> None:
     r = redis_connect()
     print("Ping from redis db_proxy: ", r.ping())
-    print("Redis post 42: ", r.get("42"))
+    print("Redis post 42: ", r.hget("42", "42"))
 
 
 def redis_db_proxy_set_query_key(id_post, result_from_sql: tuple) -> None:
