@@ -25,4 +25,6 @@ def redis_db_proxy_get_query_key(id_post: int) -> tuple | None:
 def redis_db_proxy_set_query_key(id_post: int, result_from_sql: tuple) -> None:
     r = redis_connect()
     sql_str = json.dumps(result_from_sql, indent=4, sort_keys=True, default=str)
+    print("FROM SQL: ", result_from_sql)
+    print("FROM JSON: ", sql_str)
     r.hset(str(id_post), str(id_post), sql_str)
