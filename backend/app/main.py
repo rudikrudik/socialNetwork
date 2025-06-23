@@ -11,6 +11,8 @@ origins = [
     "http://192.168.0.3:3000",
     "http://127.0.0.1:3000",
     "http://192.168.0.199:8000",
+    "http://social.vsadmin.ru",
+    "http://api.vsadmin.ru"
 ]
 
 
