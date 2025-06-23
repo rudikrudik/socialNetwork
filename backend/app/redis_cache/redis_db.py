@@ -1,9 +1,6 @@
 import redis
 import json
-from app.db.db_query import raw_query
 from app.config import settings
-
-key_post = [*raw_query("SELECT * FROM user_posts WHERE id = 42"), True]
 
 
 def redis_connect() -> redis:
@@ -26,5 +23,6 @@ def redis_db_proxy_get_query_key(id_post: int) -> tuple:
 
 
 def redis_db_proxy_set_query_key(id_post, result_from_sql: tuple) -> None:
+    r = redis_connect()
     dict_str = json.dumps(result_from_sql, indent=4, sort_keys=True, default=str)
     r.hset(str(id_post), dict_str)
