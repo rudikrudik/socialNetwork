@@ -2,6 +2,8 @@ import redis
 import json
 from app.config import settings
 
+key_list_post = ["id", "user_id", "content", "post_images", "post_likes"]
+
 
 def redis_connect():
     r_connect = redis.Redis(host=settings.REDIS_CACHE_HOST,
@@ -24,7 +26,6 @@ def redis_db_proxy_get_query_key(id_post: int) -> tuple | None:
 
 def redis_db_proxy_set_query_key(id_post: int, result_from_sql: tuple) -> None:
     r = redis_connect()
-    sql_str = json.dumps(result_from_sql, indent=4, sort_keys=True, default=str, ensure_ascii=False)
-    print("FROM SQL: ", result_from_sql)
-    print("FROM JSON: ", sql_str)
+    result = dict(zip(key_list_post, result_from_sql))
+    sql_str = json.dumps(result, indent=4, sort_keys=True, default=str, ensure_ascii=False)
     r.hset(str(id_post), str(id_post), sql_str)
