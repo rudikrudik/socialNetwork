@@ -29,8 +29,8 @@ def get_user_post_by_id(id_post: int) -> tuple:
         return result_from_redis
     else:
         result_from_sql = raw_query(f"SELECT * FROM user_posts WHERE id = {id_post}", True)
-        print("sql result fom get post: ", result_from_sql)
-        redis_db_proxy_set_query_key(id_post, result_from_sql)
+        if result_from_sql is not None:
+            redis_db_proxy_set_query_key(id_post, result_from_sql)
         return result_from_sql
 
 
