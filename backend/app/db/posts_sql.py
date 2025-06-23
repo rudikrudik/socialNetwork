@@ -1,6 +1,6 @@
 from app.config import settings
 from app.db.db_query import raw_query
-from backend.app.redis_cache.redis_db import redis_db_proxy_get_query_key, redis_db_proxy_set_query_key
+from app.redis_cache.redis_db import redis_db_proxy_get_query_key, redis_db_proxy_set_query_key
 
 
 def get_user_posts(id: int):

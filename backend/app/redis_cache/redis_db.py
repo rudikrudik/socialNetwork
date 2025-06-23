@@ -1,7 +1,7 @@
 import redis
 import json
-from backend.app.db.db_query import raw_query
-from backend.app.config import settings
+from app.db.db_query import raw_query
+from app.config import settings
 
 key_post = [*raw_query("SELECT * FROM user_posts WHERE id = 42"), True]
 

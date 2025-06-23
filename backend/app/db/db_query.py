@@ -1,5 +1,5 @@
-from backend.app.db.sql import Database as data_base
-from backend.app.config import settings
+from app.db.sql import Database as data_base
+from app.config import settings
 
 
 def raw_query(query: str, one_string_result=True, port=settings.DB_PORT_READ) -> dict:
