@@ -2,6 +2,7 @@ import redis
 import json
 from app.config import settings
 
+
 def redis_connect():
     r_connect = redis.Redis(host=settings.REDIS_CACHE_HOST,
                             port=settings.REDIS_CACHE_PORT,
