@@ -24,6 +24,7 @@ def update_user_post(id_user: int, post_content: str):
 
 
 def get_user_post_by_id(id_post: int) -> tuple:
+    print("Get user post by id: ", id_post)
     result_from_redis = redis_db_proxy_get_query_key(id_post)
     print("Result from redis: ", result_from_redis)
 
