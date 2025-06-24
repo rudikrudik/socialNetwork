@@ -49,7 +49,6 @@ function Login() {
                     path: '/',
                     domain: 'social.vsadmin.ru',
                     secure: true,
-                    httpOnly: true,
                     sameSite: 'lax'
                 })
             Cookies.set("user_id", result["user_id"],
@@ -58,7 +57,6 @@ function Login() {
                     path: '/',
                     domain: 'social.vsadmin.ru',
                     secure: true,
-                    httpOnly: true,
                     sameSite: 'lax'
                 })
             navigate('/profile');
