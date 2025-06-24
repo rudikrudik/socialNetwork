@@ -42,6 +42,7 @@ function Login() {
         let result = await trigger({login: getInputLogin, password: getInputPassword})
 
         if (result["token"]) {
+            console.log("Token:", result["token"])
             Cookies.set("token", result["token"],
                 {
                     expires: 7,
