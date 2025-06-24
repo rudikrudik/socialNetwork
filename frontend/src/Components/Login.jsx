@@ -47,17 +47,13 @@ function Login() {
                 {
                     expires: 7,
                     path: '/',
-                    domain: 'social.vsadmin.ru',
-                    secure: true,
-                    sameSite: 'lax'
+                    domain: 'social.vsadmin.ru'
                 })
             Cookies.set("user_id", result["user_id"],
                 {
                     expires: 7,
                     path: '/',
-                    domain: 'social.vsadmin.ru',
-                    secure: true,
-                    sameSite: 'lax'
+                    domain: 'social.vsadmin.ru'
                 })
             navigate('/profile');
             window.location.reload();
