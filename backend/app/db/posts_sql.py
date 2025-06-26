@@ -1,6 +1,7 @@
 from app.config import settings
 from app.db.db_query import raw_query
-from app.redis_cache.redis_db import redis_db_proxy_get_query_key, redis_db_proxy_set_query_key, redis_db_proxy_delete_key
+from app.redis_cache.redis_db import redis_db_proxy_get_query_key, redis_db_proxy_set_query_key, \
+    redis_db_proxy_delete_key
 
 
 def get_user_posts(id: int):
@@ -41,7 +42,9 @@ def get_user_post_by_id(id_post: int) -> tuple:
 
 
 def get_post_limit_and_offset(user_id: int, posts_limit: int, offset: int):
-    return raw_query(f"SELECT * FROM user_posts WHERE user_id IN"
-                     f"(SELECT friend_id FROM user_friends WHERE user_id = {user_id})"
-                     f"ORDER BY post_date_create DESC"
-                     f"LIMIT {posts_limit} OFFSET {offset}", False)
+    result = raw_query(f"SELECT * FROM user_posts WHERE user_id IN"
+                       f"(SELECT friend_id FROM user_friends WHERE user_id = {user_id})"
+                       f"ORDER BY post_date_create DESC"
+                       f"LIMIT {posts_limit} OFFSET {offset}", False)
+    print(result)
+    return result
