@@ -42,18 +42,19 @@ function Login() {
         let result = await trigger({login: getInputLogin, password: getInputPassword})
 
         if (result["token"]) {
-            console.log("Token:", result["token"])
             Cookies.set("token", result["token"],
                 {
                     expires: 7,
                     path: '/',
-                    domain: 'social.vsadmin.ru'
+                    //domain: 'social.vsadmin.ru'
+                    //domain: '192.168.0.3:3000'
                 })
             Cookies.set("user_id", result["user_id"],
                 {
                     expires: 7,
                     path: '/',
-                    domain: 'social.vsadmin.ru'
+                    //domain: 'social.vsadmin.ru'
+                    //domain: '192.168.0.3:3000'
                 })
             navigate('/profile');
             window.location.reload();
