@@ -78,5 +78,5 @@ def get_post_limit_and_offset(post_limit: int, offset: int, token: str = Depends
     except BaseException:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Post not Found"
+            detail="Posts not Found"
         )
