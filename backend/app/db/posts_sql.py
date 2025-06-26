@@ -46,5 +46,5 @@ def get_post_limit_and_offset(user_id: int, posts_limit: int, offset: int):
                        f"(SELECT friend_id FROM user_friends WHERE user_id = {user_id})"
                        f"ORDER BY post_date_create DESC"
                        f"LIMIT {posts_limit} OFFSET {offset}", False)
-    print(result)
+    print("Result posts:", result)
     return result
