@@ -49,6 +49,6 @@ def get_post_limit_and_offset(user_id: int, posts_limit: int, offset: int) -> li
 
     if id_posts:
         for id_post in id_posts:
-            list_posts.extend(list(get_user_post_by_id(int(*id_post))))
+            list_posts.append(list(get_user_post_by_id(int(*id_post))))
 
     return list_posts
