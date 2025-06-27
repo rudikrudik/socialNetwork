@@ -46,6 +46,7 @@ def get_post_limit_and_offset(user_id: int, posts_limit: int, offset: int) -> li
     id_posts = raw_query(f"SELECT (id) FROM user_posts WHERE user_id IN"
                          f"(SELECT friend_id FROM user_friends WHERE user_id = {user_id}) "
                          f"ORDER BY post_date_create DESC LIMIT {posts_limit} OFFSET {offset}", False)
+    print("Id post:", id_posts)
 
     if id_posts:
         for id_post in id_posts:
