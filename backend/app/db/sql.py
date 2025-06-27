@@ -9,10 +9,10 @@ class Database:
         self.db_host = host
         self.db_port = port
         self.connect = psycopg.connect(dbname=self.db_name,
-                                           user=self.db_user,
-                                           password=self.db_password,
-                                           host=self.db_host,
-                                           port=self.db_port)
+                                       user=self.db_user,
+                                       password=self.db_password,
+                                       host=self.db_host,
+                                       port=self.db_port)
         self.cursor = self.connect.cursor()
 
     def close(self):
