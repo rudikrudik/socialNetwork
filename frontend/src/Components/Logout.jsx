@@ -15,7 +15,7 @@ function Logout () {
 
     return (
         <div>
-            <button className="header_menu_button_signin_signout_register" onClick={logoutButton}>SingOut</button>
+            <button className="header_menu_button_signin" onClick={logoutButton}>SingOut</button>
         </div>
     )
 }
