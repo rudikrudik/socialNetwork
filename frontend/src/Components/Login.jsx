@@ -64,17 +64,19 @@ function Login() {
 
     return (
         <div>
-            <button className="header_menu_button_signin_signout_register" onClick={openLoginDialog}>SingIn</button>
+            <button className="header_menu_button_signin" onClick={openLoginDialog}>SingIn</button>
             <dialog ref={dialogLoginRef} open={isLoginDialogOpen}>
-                <div className="edit_post_dialog_wrapper">
-                    <div className="edit_post_dialog_header">
-                        <p>Login</p>
+                <div className="login_dialog_wrapper">
+                    <div className="login_dialog_header">
+                        <p>SingIn</p>
                     </div>
-                    <div className="edit_post_dialog_content">
-                        <input value={getInputLogin} onInput={setInputLogin} onChange={handleLoginChange}></input>
-                        <input value={getInputPassword} onInput={setInputPassword} onChange={handlePasswordChange}></input>
+                    <div className="login_dialog_content">
+                        <p>Login:</p>
+                        <input className="login_input_field" value={getInputLogin} onInput={setInputLogin} onChange={handleLoginChange}></input>
+                        <p>Password:</p>
+                        <input className="login_input_field" type={"password"} value={getInputPassword} onInput={setInputPassword} onChange={handlePasswordChange}></input>
                     </div>
-                    <div className="edit_post_dialog_buttons">
+                    <div className="login_dialog_buttons">
                         <button className="post_menu_button_edit" onClick={ConfirmLogin}>Login</button>
                         <button className="post_menu_button_delete" onClick={closeLoginDialog}>Exit</button>
                     </div>

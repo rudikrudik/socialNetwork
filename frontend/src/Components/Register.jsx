@@ -50,7 +50,7 @@ function Register() {
 
     return (
         <div>
-            <button className="header_menu_button_signin_signout_register" onClick={openLoginDialog}>Register</button>
+            <button className="header_menu_button_signin" onClick={openLoginDialog}>Register</button>
             <dialog ref={dialogLoginRef} open={isLoginDialogOpen}>
                 <div className="edit_post_dialog_wrapper">
                     <div className="edit_post_dialog_header">
