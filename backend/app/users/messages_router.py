@@ -8,9 +8,11 @@ router = APIRouter()
 
 
 @router.post("/dialog/{user_id}/send")
-def send_message_to_user(user_message: UserMessage, token: str = Depends(dep.get_token)):
+def send_message_to_user(user_id: int, user_message: UserMessage, token: str = Depends(dep.get_token)):
+    user_id_from_token = dep.get_current_user(token)
+
     try:
-        return mongo_db.mongodb_insert_one(user_message.id_from, user_message.to_id, user_message.message)
+        return mongo_db.mongodb_insert_one(user_id_from_token, user_id, user_message.message)
     except BaseException:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -19,9 +21,7 @@ def send_message_to_user(user_message: UserMessage, token: str = Depends(dep.get
 
 
 @router.get("/dialog/{user_id}/list")
-def get_all_messages_from_user(token: str = Depends(dep.get_token)):
-    user_id = dep.get_current_user(token)
-
+def get_all_messages_from_user(user_id: int, token: str = Depends(dep.get_token)):
     try:
         return mongo_db.mongodb_query(user_id)
     except BaseException:

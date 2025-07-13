@@ -67,6 +67,4 @@ class UserPost(BaseModel):
 
 
 class UserMessage(BaseModel):
-    id_from: int
-    to_id: int
     message: str
