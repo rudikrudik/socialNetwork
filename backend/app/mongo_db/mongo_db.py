@@ -4,8 +4,8 @@ from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError, Opera
 from datetime import datetime
 from pymongo.synchronous.collection import Collection
 from app.config import settings
-from bson.json_util import dumps
-from bson.json_util import loads
+from bson import json_util
+import json
 
 
 def mongodb_connect() -> Collection[Mapping[str, Any] | Any]:
@@ -33,6 +33,6 @@ def mongodb_insert_one(id_from: int, to_id: int, content: str) -> str:
 
 def mongodb_query(id_from: int) -> list:
     try:
-        return loads(dumps(mongodb_connect().find({"id_from": id_from})))
+        return json.loads(json_util.dumps(mongodb_connect().find({"id_from": id_from})))
     except OperationFailure as error:
         print(f"Query error {error}")
