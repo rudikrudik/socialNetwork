@@ -18,6 +18,10 @@ class Settings(BaseSettings):
     REDIS_CACHE_PORT: int
     REDIS_PASSWORD: str
     REDIS_DB: int
+    MONGODB_HOST: str
+    MONGODB_PORT: int
+    MONGODB_DB: str
+    MONGODB_COLLECTIONS: str
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")
