@@ -30,8 +30,8 @@ def mongodb_insert_one(id_from: int, to_id: int, content: str) -> str:
         print(f"Insert error {error}")
 
 
-def mongodb_query(id_from: int) -> Cursor[Mapping[str, Any] | Any]:
+def mongodb_query(id_from: int) -> list:
     try:
-        return mongodb_connect().find({"id_from": id_from})
+        return mongodb_connect().find({"id_from": id_from}).to_list()
     except OperationFailure as error:
         print(f"Query error {error}")
