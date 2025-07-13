@@ -15,7 +15,7 @@ def send_message_to_user(user_id: int, user_message: UserMessage):
     try:
         result = mongo_db.mongodb_insert_one(1, user_id, user_message.message)
         if result:
-            return {"Message send": "ok", "from": 1, "to": "user_id"}
+            return {"Message send": "ok", "from": 1, "to": user_id}
         else:
             return {"Message send": "false"}
     except BaseException:
@@ -28,7 +28,7 @@ def send_message_to_user(user_id: int, user_message: UserMessage):
 @router.get("/dialog/{user_id}/list")
 def get_all_messages_from_user(user_id: int):
     try:
-        return mongo_db.mongodb_query(user_id)
+        return list(mongo_db.mongodb_query(user_id))
     except BaseException:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
