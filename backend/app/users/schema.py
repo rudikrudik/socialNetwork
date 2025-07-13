@@ -64,3 +64,9 @@ class UserPost(BaseModel):
     post_date: str
     post_content: str
     post_likes: str
+
+
+class UserMessage(BaseModel):
+    id_from: int
+    to_id: int
+    message: str
