@@ -3,7 +3,6 @@ from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError, OperationFailure
 from datetime import datetime
 from pymongo.synchronous.collection import Collection
-from pymongo.synchronous.cursor import Cursor
 from app.config import settings
 
 
