@@ -6,6 +6,7 @@ from pymongo.synchronous.collection import Collection
 from pymongo.synchronous.cursor import Cursor
 from app.config import settings
 
+
 def mongodb_connect() -> Collection[Mapping[str, Any] | Any]:
     try:
         client = MongoClient(f"mongodb://{settings.MONGODB_HOST}:{settings.MONGODB_PORT}/")
