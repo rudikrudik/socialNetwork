@@ -28,7 +28,10 @@ def send_message_to_user(user_id: int, user_message: UserMessage):
 @router.get("/dialog/{user_id}/list")
 def get_all_messages_from_user(user_id: int):
     try:
-        return list(mongo_db.mongodb_query(user_id))
+        result_query = []
+        for r in mongo_db.mongodb_query(user_id):
+            result_query.append(r)
+        return result_query
     except BaseException:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
