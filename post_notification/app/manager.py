@@ -11,11 +11,15 @@ class ConnectionManager:
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
         self.active_user_connections.append(websocket)
+        for i in self.active_user_connections:
+            print(f"Active Connections: {i}", flush=True)
 
     def disconnect(self, websocket: WebSocket):
         self.active_user_connections.remove(websocket)
 
     async def send_message(self, message: str):
+        print(f"get message: {message}", flush=True)
+
         for connection in self.active_user_connections:
             await connection.send_text(message)
 
