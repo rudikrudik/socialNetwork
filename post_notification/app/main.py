@@ -27,7 +27,17 @@ async def set_user_friends(user_friends: UserFriends):
 
 @app.post("/get-user-friends")
 async def get_user_friends(id_user: IdUser):
-    return await manager.get_user_friends(id_user.id)
+    try:
+        result = await manager.get_user_friends(id_user.id)
+        if result:
+            return result
+        else:
+            return {"User not exist"}
+    except BaseException:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not set"
+        )
 
 
 @app.websocket("/ws")

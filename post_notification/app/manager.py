@@ -1,3 +1,5 @@
+from typing import Any
+
 from starlette.websockets import WebSocket
 
 
@@ -17,8 +19,11 @@ class ConnectionManager:
         for connection in self.active_user_connections:
             await connection.send_text(message)
 
-    async def get_user_friends(self, user_id: int) -> list:
-        return self.user_friends[user_id]
+    async def get_user_friends(self, user_id: int) -> list | None:
+        try:
+            return self.user_friends[user_id]
+        except KeyError as error:
+            return None
 
     async def set_user_friends(self, user_id: int, user_friends: list) -> bool:
         try:
