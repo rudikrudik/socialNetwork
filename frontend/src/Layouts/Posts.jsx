@@ -16,7 +16,7 @@ function Posts(props) {
     if (isLoading) return <div>is loading</div>;
     if (error) return <div>is error</div>;
 
-    let ws = new WebSocket("ws://192.168.0.3:8001/ws");
+    let ws = new WebSocket(global.config.urls.ws);
     ws.onopen = function() {
         const user_id = Cookies.get('user_id');
         ws.send(JSON.stringify({ id_user: user_id }));
