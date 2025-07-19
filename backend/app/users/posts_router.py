@@ -2,7 +2,9 @@ from fastapi import APIRouter, HTTPException, Depends, status
 from app.users.schema import IdUser, CreateUserPost, UpdateUserPost, IdPost
 from app.db import posts_sql as db_posts
 from app.users import dependencies as dep
-
+from app.config import settings
+from app.db import friends_sql as db_friends
+import httpx
 
 router = APIRouter()
 
@@ -30,8 +32,27 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
     except BaseException:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="User Post can Create"
+            detail="User post can create"
         )
+
+
+@router.post("/post/create/ws")
+def fetch_external_data(user_id: IdUser):
+    ws_notification = (f"http://{settings.POST_NOTIFICATION_HOST}:{settings.POST_NOTIFICATION_PORT}"
+                        f"/send-message?data={user_id.id}")
+    ws_get_data = (f"http://{settings.POST_NOTIFICATION_HOST}:{settings.POST_NOTIFICATION_PORT}"
+                        f"/get-user-friends")
+    ws_set_data = (f"http://{settings.POST_NOTIFICATION_HOST}:{settings.POST_NOTIFICATION_PORT}"
+                        f"/set-user-friends")
+
+    response = httpx.post(ws_get_data, json={"id": user_id.id})
+
+    if response.json()[0] != "User not exist":
+        result = [i[1] for i in db_friends.get_user_friends(user_id.id)]
+        if result:
+            httpx.post(ws_set_data, json={"id": user_id.id, "user_friends": result})
+
+    httpx.post(ws_notification)
 
 
 @router.post("/post/update")

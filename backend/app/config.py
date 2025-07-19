@@ -22,6 +22,8 @@ class Settings(BaseSettings):
     MONGODB_PORT: int
     MONGODB_DB: str
     MONGODB_COLLECTIONS: str
+    POST_NOTIFICATION_HOST: str
+    POST_NOTIFICATION_PORT: int
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")

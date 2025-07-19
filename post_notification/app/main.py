@@ -7,10 +7,10 @@ import json
 app = FastAPI()
 
 
-@app.post("/send-message")
-async def push_notify_post(data: str):
-    await manager.send_message(f"New product available! {data}")
-    return {"message": "Message sent to WebSocket clients"}
+@app.post("/post/feed/posted")
+async def push_notify_post(user_id: str):
+    await manager.send_message(user_id)
+    return {"message": "Notification sent to WebSocket clients"}
 
 
 @app.post("/set-user-friends")
