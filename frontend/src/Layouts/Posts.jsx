@@ -3,6 +3,7 @@ import '../config';
 import useSWR from "swr";
 import fetcherGet from "../Components/FetcherGET";
 import Post from "./Post";
+import Cookies from "js-cookie";
 
 function Posts(props) {
     const {
@@ -14,6 +15,17 @@ function Posts(props) {
 
     if (isLoading) return <div>is loading</div>;
     if (error) return <div>is error</div>;
+
+    let ws = new WebSocket("ws://192.168.0.3:8001/ws");
+    ws.onopen = function() {
+        const user_id = Cookies.get('user_id');
+        ws.send(JSON.stringify({ id_user: user_id }));
+    };
+    ws.onmessage = function(event) {
+        //window.location.reload();
+        alert(event.data);
+    };
+
 
     return (
         <div className="main">
