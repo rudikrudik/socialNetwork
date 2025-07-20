@@ -22,20 +22,11 @@ class ConnectionManager:
         del self.active_user_connections[id_user["id_user"]]
 
     async def send_message(self, user_id, friends):
-        #print(f"get message: {user_id}", flush=True)
-        #print("Friends list", friends, "Type: ", type(friends))
-
-        for i in self.active_user_connections.keys():
-            print(f"Active connection is {i}")
-
         for friend in friends:
-            if friend in self.active_user_connections:
+            if friend in self.active_user_connections.keys():
                 await self.active_user_connections[friend].send_text(f"New post from {user_id}")
             else:
                 print(f"{friend} not in active connection")
-
-        #for connection in self.active_user_connections:
-        #    await connection.send_text(message["id"])
 
 
 manager = ConnectionManager()
