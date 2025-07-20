@@ -43,7 +43,7 @@ def fetch_external_data(user_id: IdUser):
     result = [i[1] for i in db_friends.get_user_friends(user_id.id)]
 
     if result:
-        httpx.post(ws_notification, json={"id": user_id.id, "user_friends": result})
+        httpx.post(ws_notification, json={"id": user_id.id, "friends": result})
 
 
 @router.post("/post/update")
