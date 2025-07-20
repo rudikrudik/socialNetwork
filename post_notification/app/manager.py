@@ -25,7 +25,7 @@ class ConnectionManager:
         #print(f"get message: {user_id}", flush=True)
         #print("Friends list", friends, "Type: ", type(friends))
 
-        for i in self.active_user_connections:
+        for i in self.active_user_connections.keys():
             print(f"Active connection is {i}")
 
         for friend in friends:
