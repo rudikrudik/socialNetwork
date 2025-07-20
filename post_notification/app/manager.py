@@ -1,4 +1,3 @@
-from typing import Any
 import json
 from starlette.websockets import WebSocket
 
@@ -12,7 +11,7 @@ class ConnectionManager:
         data = await websocket.receive_text()
         id_user = json.loads(data)
 
-        self.active_user_connections[id_user["id_user"]] = websocket
+        self.active_user_connections[int(id_user["id_user"])] = websocket
         for i in self.active_user_connections:
             print(f"Active Connections: {i}", flush=True)
 
@@ -23,6 +22,7 @@ class ConnectionManager:
 
     async def send_message(self, user_id, friends):
         for friend in friends:
+            print(f"Type friend: {friend}")
             if friend in self.active_user_connections.keys():
                 await self.active_user_connections[friend].send_text(f"New post from {user_id}")
             else:
