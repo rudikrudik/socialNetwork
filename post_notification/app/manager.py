@@ -23,10 +23,11 @@ class ConnectionManager:
 
     async def send_message(self, message):
         print(f"get message: {message}", flush=True)
+        print("Friends list", message["friends"], "Type: ", type(message["friends"]))
 
-        for friend in message["friends"]:
-            if friend in self.active_user_connections:
-                await self.active_user_connections[friend].send(f"New post from {message["id"]}")
+        # for friend in message["friends"]:
+        #     if friend in self.active_user_connections:
+        #         await self.active_user_connections[friend].send(f"New post from {message["id"]}")
 
         #for connection in self.active_user_connections:
         #    await connection.send_text(message["id"])
