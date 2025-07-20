@@ -24,7 +24,7 @@ class ConnectionManager:
     async def send_message(self, message):
         ws_recieve = json.loads(message)
         print(f"get message: {message}", flush=True)
-        print("Friends list", ws_recieve["friends"], "Type: ", type(ws_recieve["friends"]))
+        #print("Friends list", ws_recieve["friends"], "Type: ", type(ws_recieve["friends"]))
 
         # for friend in message["friends"]:
         #     if friend in self.active_user_connections:
