@@ -28,6 +28,8 @@ class ConnectionManager:
         for friend in friends:
             if friend in self.active_user_connections:
                 await self.active_user_connections[friend].send_text(f"New post from {user_id}")
+            else:
+                print(f"{friend} not in active connection")
 
         #for connection in self.active_user_connections:
         #    await connection.send_text(message["id"])
