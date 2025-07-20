@@ -7,7 +7,8 @@ app = FastAPI()
 
 
 @app.post("/post/feed/posted")
-async def push_notify_post(data: str):
+async def push_notify_post(data):
+    print("/post/feed/posted data:", data)
     await manager.send_message(data)
     return {"message": "Notification sent to WebSocket clients"}
 
