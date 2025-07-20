@@ -6,7 +6,6 @@ from starlette.websockets import WebSocket
 class ConnectionManager:
     def __init__(self):
         self.active_user_connections: dict = {}
-        self.user_friends: dict = {}
 
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
@@ -27,19 +26,6 @@ class ConnectionManager:
 
         for connection in self.active_user_connections:
             await connection.send_text(message)
-
-    async def get_user_friends(self, user_id: int) -> list | None:
-        try:
-            return self.user_friends[user_id]
-        except KeyError as error:
-            return None
-
-    async def set_user_friends(self, user_id: int, user_friends: list) -> bool:
-        try:
-            self.user_friends[user_id] = user_friends
-            return True
-        except KeyError as error:
-            return False
 
 
 manager = ConnectionManager()

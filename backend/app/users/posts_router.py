@@ -40,19 +40,11 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
 def fetch_external_data(user_id: IdUser):
     ws_notification = (f"http://{settings.POST_NOTIFICATION_HOST}:{settings.POST_NOTIFICATION_PORT}"
                         f"/post/feed/posted?user_id={user_id.id}")
-    ws_get_data = (f"http://{settings.POST_NOTIFICATION_HOST}:{settings.POST_NOTIFICATION_PORT}"
-                        f"/get-user-friends")
-    ws_set_data = (f"http://{settings.POST_NOTIFICATION_HOST}:{settings.POST_NOTIFICATION_PORT}"
-                        f"/set-user-friends")
 
-    response = httpx.post(ws_get_data, json={"id": user_id.id})
+    result = [i[1] for i in db_friends.get_user_friends(user_id.id)]
 
-    if response.json()[0] != "User not exist":
-        result = [i[1] for i in db_friends.get_user_friends(user_id.id)]
-        if result:
-            httpx.post(ws_set_data, json={"id": user_id.id, "user_friends": result})
-
-    httpx.post(ws_notification)
+    if result:
+        httpx.post(ws_notification, json={"id": user_id.id, "user_friends": result})
 
 
 @router.post("/post/update")
