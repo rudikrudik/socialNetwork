@@ -25,7 +25,7 @@ class ConnectionManager:
         print(f"get message: {message}", flush=True)
 
         for connection in self.active_user_connections:
-            await connection.send_text(message)
+            await connection.send_text(message["id"])
 
 
 manager = ConnectionManager()
