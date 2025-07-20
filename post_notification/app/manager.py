@@ -21,11 +21,15 @@ class ConnectionManager:
         id_user = json.loads(data)
         del self.active_user_connections[id_user["id_user"]]
 
-    async def send_message(self, message: str):
+    async def send_message(self, message):
         print(f"get message: {message}", flush=True)
 
-        for connection in self.active_user_connections:
-            await connection.send_text(message["id"])
+        for friend in message["friends"]:
+            if friend in self.active_user_connections:
+                await self.active_user_connections[friend].send(f"New post from {message["id"]}")
+
+        #for connection in self.active_user_connections:
+        #    await connection.send_text(message["id"])
 
 
 manager = ConnectionManager()
