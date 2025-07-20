@@ -38,8 +38,7 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
 
 @router.post("/post/create/ws")
 def fetch_external_data(user_id: IdUser):
-    ws_notification = (f"http://{settings.POST_NOTIFICATION_HOST}:{settings.POST_NOTIFICATION_PORT}"
-                        f"/post/feed/posted?user_id={user_id.id}")
+    ws_notification = f"http://{settings.POST_NOTIFICATION_HOST}:{settings.POST_NOTIFICATION_PORT}/post/feed/posted"
 
     result = [i[1] for i in db_friends.get_user_friends(user_id.id)]
 
