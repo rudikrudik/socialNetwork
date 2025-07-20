@@ -1,5 +1,6 @@
 from fastapi import FastAPI, WebSocket
 from starlette.websockets import WebSocketDisconnect
+from app.schema import UserFriends
 from app.manager import manager
 import json
 
@@ -7,8 +8,8 @@ app = FastAPI()
 
 
 @app.post("/post/feed/posted")
-async def push_notify_post(data):
-    print("/post/feed/posted data:", data)
+async def push_notify_post(data: UserFriends):
+    print("/post/feed/posted data:", data.id, data.friends)
     await manager.send_message(data)
     return {"message": "Notification sent to WebSocket clients"}
 
