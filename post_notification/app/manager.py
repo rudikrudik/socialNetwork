@@ -25,6 +25,9 @@ class ConnectionManager:
         #print(f"get message: {user_id}", flush=True)
         #print("Friends list", friends, "Type: ", type(friends))
 
+        for i in self.active_user_connections:
+            print(f"Active connection is {i}")
+
         for friend in friends:
             if friend in self.active_user_connections:
                 await self.active_user_connections[friend].send_text(f"New post from {user_id}")
