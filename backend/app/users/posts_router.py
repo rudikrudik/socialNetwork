@@ -39,11 +39,12 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
 @router.post("/post/create/ws")
 def fetch_external_data(user_id: IdUser):
     ws_notification = f"http://{settings.POST_NOTIFICATION_HOST}:{settings.POST_NOTIFICATION_PORT}/post/feed/posted"
+    id_user = user_id.id
 
-    result = [i[1] for i in db_friends.get_user_friends(user_id.id)]
+    result = [i[1] for i in db_friends.get_user_friends(id_user)]
 
     if result:
-        httpx.post(ws_notification, json={"id": user_id.id, "friends": result})
+        httpx.post(ws_notification, json={"id": id_user, "friends": result})
 
 
 @router.post("/post/update")
