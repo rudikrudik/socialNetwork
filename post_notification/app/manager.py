@@ -21,11 +21,10 @@ class ConnectionManager:
         id_user = json.loads(data)
         del self.active_user_connections[id_user["id_user"]]
 
-    async def send_message(self, message):
-        print(f"get message: {message}", flush=True)
-        #print("Friends list", ws_recieve["friends"], "Type: ", type(ws_recieve["friends"]))
-        json_string = json.dumps(message)
-        print(json_string)
+    async def send_message(self, id, friends):
+        print(f"get message: {id}", flush=True)
+        print("Friends list", friends, "Type: ", type(friends))
+
         # for friend in message["friends"]:
         #     if friend in self.active_user_connections:
         #         await self.active_user_connections[friend].send(f"New post from {message["id"]}")
