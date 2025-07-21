@@ -1,6 +1,7 @@
 import pika
 import httpx
 import json
+from datetime import datetime
 
 credentials = pika.PlainCredentials('admin', 'admin')
 props = {'connection_name': 'Pika Note consumer'}
@@ -17,7 +18,7 @@ def callback(ch, method, properties, body):
     ws_notification = f"http://192.168.0.212:8001/post/feed/posted"
 
     httpx.post(ws_notification, json={"id": result_json["id"], "friends": result_json["friends"]})
-    print(" [x] Received", result_json, flush=True)
+    print(" [x] Received", datetime.now(), result_json, flush=True)
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
 
