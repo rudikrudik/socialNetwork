@@ -5,7 +5,7 @@ from app.users import dependencies as dep
 from app.config import settings
 from app.db import friends_sql as db_friends
 import httpx
-from app.post_notification_producer import producer
+from app.post_notification_producer.producer import producer
 
 router = APIRouter()
 
