@@ -32,7 +32,8 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
         friends = [i[1] for i in db_friends.get_user_friends(user_id)]
 
         if friends:
-            producer(user_id.id, friends)
+            result = producer(user_id.id, friends)
+            print("Result function producer: ", result)
 
         return {"Post Create:", "ok"}
     except BaseException:
