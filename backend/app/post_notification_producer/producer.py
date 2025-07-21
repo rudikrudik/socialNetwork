@@ -3,8 +3,7 @@ import json
 from app.config import settings
 
 
-def producer(user_id: int, friends: list) -> bool:
-    print("user id:", user_id, "friends", friends)
+def producer(user_id: int, friends: list) -> None:
     credentials = pika.PlainCredentials(settings.RABBITMQ_USER, settings.RABBITMQ_PASSWORD)
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=settings.RABBITMQ_HOST,
                                                                    port=settings.RABBITMQ_PORT,
@@ -22,4 +21,3 @@ def producer(user_id: int, friends: list) -> bool:
                                 delivery_mode=1,
                             ))
     connection.close()
-    return True

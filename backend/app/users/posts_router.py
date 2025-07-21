@@ -28,12 +28,12 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
     try:
         db_posts.create_user_post(user_id, post.post_content)
         friends = [i[1] for i in db_friends.get_user_friends(user_id)]
-        print("Friends list", friends)
 
         if friends:
             pr.producer(user_id, friends)
 
         return {"Post Create:", "ok"}
+
     except BaseException:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
