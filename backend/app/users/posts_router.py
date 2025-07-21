@@ -3,7 +3,7 @@ from app.users.schema import IdUser, CreateUserPost, UpdateUserPost, IdPost
 from app.db import posts_sql as db_posts
 from app.users import dependencies as dep
 from app.db import friends_sql as db_friends
-from app.post_notification_producer import producer as producer
+from app.post_notification_producer import producer as pr
 
 router = APIRouter()
 
@@ -32,7 +32,7 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
 
         if friends:
             print("IF FRIENDS")
-            result = producer(user_id.id, friends)
+            result = pr.producer(user_id.id, friends)
             print("Result function producer: ", result)
         else:
             print("Function producer not start")
