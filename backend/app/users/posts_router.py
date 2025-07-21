@@ -30,10 +30,13 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
     try:
         db_posts.create_user_post(user_id, post.post_content)
         friends = [i[1] for i in db_friends.get_user_friends(user_id)]
+        print("Friends list", friends)
 
         if friends:
             result = producer(user_id.id, friends)
             print("Result function producer: ", result)
+        else:
+            print("Function producer not start")
 
         return {"Post Create:", "ok"}
     except BaseException:
