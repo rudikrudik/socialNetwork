@@ -4,6 +4,7 @@ from app.config import settings
 
 
 def producer(user_id: int, friends: list) -> None:
+    print("user id:", user_id, "friends", friends)
     credentials = pika.PlainCredentials(settings.RABBITMQ_USER, settings.RABBITMQ_PASSWORD)
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=settings.RABBITMQ_HOST,
                                                                    port=settings.RABBITMQ_PORT,

@@ -29,9 +29,7 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
 
     try:
         db_posts.create_user_post(user_id, post.post_content)
-        print("Create post")
         friends = [i[1] for i in db_friends.get_user_friends(user_id)]
-        print(friends)
 
         if friends:
             producer(user_id.id, friends)
