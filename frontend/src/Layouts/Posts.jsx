@@ -22,8 +22,8 @@ function Posts(props) {
         ws.send(JSON.stringify({ id_user: user_id }));
     };
     ws.onmessage = function(event) {
-        //window.location.reload();
-        alert(event.data);
+        window.location.reload();
+        //alert(event.data);
     };
 
 
