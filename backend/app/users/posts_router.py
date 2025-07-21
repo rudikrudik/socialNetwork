@@ -5,6 +5,7 @@ from app.users import dependencies as dep
 from app.config import settings
 from app.db import friends_sql as db_friends
 import httpx
+from app.post_notification_producer import producer
 
 router = APIRouter()
 
@@ -40,10 +41,11 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
 def fetch_external_data(user_id: IdUser):
     ws_notification = f"http://{settings.POST_NOTIFICATION_HOST}:{settings.POST_NOTIFICATION_PORT}/post/feed/posted"
 
-    result = [i[1] for i in db_friends.get_user_friends(user_id.id)]
+    friends = [i[1] for i in db_friends.get_user_friends(user_id.id)]
 
-    if result:
-        httpx.post(ws_notification, json={"id": user_id.id, "friends": result})
+    if friends:
+        #httpx.post(ws_notification, json={"id": user_id.id, "friends": result})
+        producer(user_id.id, friends)
 
 
 @router.post("/post/update")
