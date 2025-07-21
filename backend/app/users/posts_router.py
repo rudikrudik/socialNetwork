@@ -2,10 +2,8 @@ from fastapi import APIRouter, HTTPException, Depends, status
 from app.users.schema import IdUser, CreateUserPost, UpdateUserPost, IdPost
 from app.db import posts_sql as db_posts
 from app.users import dependencies as dep
-from app.config import settings
 from app.db import friends_sql as db_friends
-import httpx
-from app.post_notification_producer.producer import producer
+from app.post_notification_producer import producer as producer
 
 router = APIRouter()
 
