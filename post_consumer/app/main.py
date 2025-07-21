@@ -1,5 +1,6 @@
 import pika
 import httpx
+import json
 
 credentials = pika.PlainCredentials('admin', 'admin')
 props = {'connection_name': 'Pika Note consumer'}
@@ -12,11 +13,11 @@ connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.0.2
 
 def callback(ch, method, properties, body):
     receive_data = body.decode()
-    #result_json = json.loads(receive_data)
+    result_json = json.loads(receive_data)
 
     ws_notification = f"http://192.168.0.212:8001/post/feed/posted"
 
-    httpx.post(ws_notification, json={receive_data})
+    httpx.post(ws_notification, json={result_json})
 
     print(" [x] Received", receive_data, flush=True)
     ch.basic_ack(delivery_tag=method.delivery_tag)
@@ -32,3 +33,6 @@ def consumer() -> None:
 
     print(' [*] Waiting for messages. To exit press CTRL+C', flush=True)
     channel.start_consuming()
+
+
+consumer()
