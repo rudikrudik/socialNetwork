@@ -29,23 +29,17 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
 
     try:
         db_posts.create_user_post(user_id, post.post_content)
+        friends = [i[1] for i in db_friends.get_user_friends(user_id)]
+
+        if friends:
+            producer(user_id.id, friends)
+
         return {"Post Create:", "ok"}
     except BaseException:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="User post can create"
         )
-
-
-@router.post("/post/create/ws")
-def fetch_external_data(user_id: IdUser):
-    #ws_notification = f"http://{settings.POST_NOTIFICATION_HOST}:{settings.POST_NOTIFICATION_PORT}/post/feed/posted"
-
-    friends = [i[1] for i in db_friends.get_user_friends(user_id.id)]
-
-    if friends:
-        #httpx.post(ws_notification, json={"id": user_id.id, "friends": result})
-        producer(user_id.id, friends)
 
 
 @router.post("/post/update")
