@@ -33,6 +33,7 @@ def create_user_post(post: CreateUserPost, token: str = Depends(dep.get_token)):
         print("Friends list", friends)
 
         if friends:
+            print("IF FRIENDS")
             result = producer(user_id.id, friends)
             print("Result function producer: ", result)
         else:
