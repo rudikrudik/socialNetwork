@@ -12,14 +12,12 @@ connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.0.2
 
 
 def callback(ch, method, properties, body):
-    receive_data = body.decode()
-    result_json = json.loads(receive_data)
+    result_json = json.loads(body.decode())
 
     ws_notification = f"http://192.168.0.212:8001/post/feed/posted"
 
-    httpx.post(ws_notification, json={result_json})
-
-    print(" [x] Received", receive_data, flush=True)
+    httpx.post(ws_notification, json={"id": result_json["id"], "friends": result_json["friends"]})
+    print(" [x] Received", result_json, flush=True)
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
 
