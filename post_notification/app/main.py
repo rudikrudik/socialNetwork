@@ -2,7 +2,6 @@ from fastapi import FastAPI, WebSocket
 from starlette.websockets import WebSocketDisconnect
 from app.schema import UserFriends
 from app.manager import manager
-import json
 
 app = FastAPI()
 
