@@ -20,8 +20,11 @@ class ConnectionManager:
 
     async def send_message(self, user_id, friends):
         for friend in friends:
-            if friend in self.active_user_connections.keys():
-                await self.active_user_connections[friend].send_text(f"New post from {user_id}")
+            try:
+                if friend in self.active_user_connections.keys():
+                    await self.active_user_connections[friend].send_text(f"New post from {user_id}")
+            except RuntimeError as error:
+                print(f"Error send notification {error}")
 
 
 manager = ConnectionManager()
