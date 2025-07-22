@@ -19,9 +19,7 @@ async def websocket_endpoint(websocket: WebSocket):
 
     try:
         while True:
-            data = await websocket.receive_text()
-            id_user = json.loads(data)
-            print(id_user, flush=True)
+            await websocket.receive_text()
 
     except WebSocketDisconnect:
-        manager.disconnect(websocket)
+        await manager.disconnect(websocket)
