@@ -7,15 +7,15 @@ from app.users import dependencies as dep
 router = APIRouter()
 
 
-@router.post("/dialog/{user_id}/send")
-def send_message_to_user(user_id: int, user_message: UserMessage):
+@router.post("/dialog/{user_id}/send/{from_user}")
+def send_message_to_user(user_id: int, from_user: int, user_message: UserMessage):
     # token: str = Depends(dep.get_token)
     # user_id_from_token = dep.get_current_user(token)
 
     try:
-        result = mongo_db.mongodb_insert_one(1, user_id, user_message.message)
+        result = mongo_db.mongodb_insert_one(from_user, user_id, user_message.message)
         if result:
-            return {"Message send": "ok", "from": 1, "to": user_id}
+            return {"Message send": "ok", "from": from_user, "to": user_id}
         else:
             return {"Message send": "false"}
     except BaseException:
