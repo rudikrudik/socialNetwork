@@ -31,6 +31,7 @@ def mongodb_insert_one(id_from: int, to_id: int, content: str) -> str:
 
 def mongodb_query(id_from: int) -> list:
     try:
-        return list(mongodb_connect().find({"id_from": id_from}, {'_id': False}))
+        return list(mongodb_connect().find({"id_from": id_from}, {'_id': False})
+                    .sort({"date": -1}).limit(20))
     except OperationFailure as error:
         print(f"Query error {error}")
