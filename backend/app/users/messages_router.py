@@ -31,7 +31,7 @@ def send_message_to_user(from_user: int, to_user: int, user_message: UserMessage
         )
 
 
-@router.post("/dialog_get/{from_user}/send/{to_user}")
+@router.post("/dialog/{from_user}/get/{to_user}")
 def get_messages_from_to_user(from_user: int, to_user: int):
     # token: str = Depends(dep.get_token)
     # user_id_from_token = dep.get_current_user(token)
