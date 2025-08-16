@@ -23,7 +23,7 @@ def find_sort_id(from_user: int, to_user: int) -> tuple:
     return from_user if from_user < to_user else to_user, to_user if to_user > from_user else from_user
 
 
-def redis_db_send_message_from_to(from_user: int, to_user: int, message: str) -> None:
+def redis_db_send_message_from_to(from_user: int, to_user: int, message: str) -> bool:
     r = redis_connect()
     first, last = find_sort_id(from_user, to_user)
 
@@ -34,7 +34,14 @@ def redis_db_send_message_from_to(from_user: int, to_user: int, message: str) ->
         "message": message
     }
 
-    r.rpush(f"dialog:{first}:{last}", json.dumps(data, ensure_ascii=False))
+    try:
+        r.rpush(f"dialog:{first}:{last}", json.dumps(data, ensure_ascii=False))
+
+    except redis.exceptions.RedisError as error:
+        print(f"Error send message {error}")
+        return False
+
+    return True
 
 
 def redis_search_user_dialog(id_user: int) -> list | None:
