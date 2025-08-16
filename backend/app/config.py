@@ -18,6 +18,11 @@ class Settings(BaseSettings):
     REDIS_CACHE_PORT: int
     REDIS_PASSWORD: str
     REDIS_DB: int
+    REDIS_DIALOG_HOST: str
+    REDIS_DIALOG_LOGIN: str
+    REDIS_DIALOG_PORT: int
+    REDIS_DIALOG_PASSWORD: str
+    REDIS_DIALOG_DB: int
     MONGODB_HOST: str
     MONGODB_PORT: int
     MONGODB_DB: str
