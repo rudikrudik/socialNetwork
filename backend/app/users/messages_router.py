@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, status
 from app.users.schema import UserMessage
-from app.redis_dialogs import redis_db
+from app.redis_dialogs import redis_dialogs as redis_db
 
 # temporary not used
 # from app.mongo_db import mongo_db
