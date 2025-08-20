@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.users import router, posts_router, friends_router, messages_router
+from prometheus_fastapi_instrumentator import Instrumentator
 import uvicorn
 
 app = FastAPI(title=settings.PROJECT_NAME,
@@ -22,6 +23,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+Instrumentator().instrument(app).expose(app)
 
 # Include all route from apis.v1
 app.include_router(router.router)
