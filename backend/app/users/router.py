@@ -96,7 +96,7 @@ def get_all_users(token: str = Depends(dep.get_token)):
     return db_user.get_all_users()
 
 
-@router.get("/user/search")
+@router.post("/user/search")
 def search_users(search_user: SearchUser):
     if search_user.first_name.isalpha() and search_user.last_name.isalpha():
         result = db_user.search_users(search_user.first_name, search_user.last_name)
