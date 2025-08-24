@@ -6,7 +6,9 @@ from prometheus_fastapi_instrumentator import Instrumentator
 import uvicorn
 
 app = FastAPI(title=settings.PROJECT_NAME,
-              version=settings.PROJECT_VERSION)
+              version=settings.PROJECT_VERSION,
+              root_path="/v1/users"
+              )
 
 origins = [
     "http://192.168.0.3:3000",
